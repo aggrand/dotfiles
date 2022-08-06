@@ -7,15 +7,16 @@ sudo xcode-select --install
 
 set -eo pipefail
 
-# Install/Update Homebrew
 which -s brew
 if [[ $? != 0 ]] ; then
+    echo "Installing homebrew."
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
+    echo "Updating homebrew."
     brew update
 fi
 
-# Bootstrap python
+echo "Bootstrapping python."
 brew install pyenv
 brew upgrade pyenv
 if brew ls --versions pyenv >/dev/null; then
@@ -23,10 +24,12 @@ if brew ls --versions pyenv >/dev/null; then
 else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install pyenv
 fi
-source ./pyenv.sh
+source .bashrc
 pyenv install -s 3.9.9
 pyenv global 3.9.9
 sudo pip3 install --upgrade pip
 
-# Run the ansible playbook.
+echo "Installing ansible."
 pip3 install ansible
+
+echo "Running ansible."
