@@ -1,5 +1,5 @@
-#+title: Raiden's Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/projects/misc-configs/init.el :mkdirp yes
+#+title: System Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.dotfiles/.emacs.d/init.el :mkdirp yes
 
 * Package System Setup
 #+begin_src emacs-lisp
@@ -582,7 +582,7 @@ This function checks when saved whether this org file is the defined emacs.org f
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/projects/misc-configs/emacs.org"))
+                      (expand-file-name "~/.dotfiles/emacs.org"))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
@@ -591,7 +591,7 @@ This function checks when saved whether this org file is the defined emacs.org f
 #+end_src
 
 #+RESULTS:
-| (lambda nil (add-hook 'after-save-hook #'efs/org-babel-tangle-config)) | efs/org-mode-visual-fill | org-bullets-mode | org-tempo-setup | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | crw/org-mode-setup | (lambda nil (display-line-numbers-mode 0)) |
+| (lambda nil (add-hook 'after-save-hook #'efs/org-babel-tangle-config)) | org-tempo-setup | org-bullets-mode | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | efs/org-mode-visual-fill | crw/org-mode-setup | (lambda nil (display-line-numbers-mode 0)) |
 
 * Applications
 You can configure non-emacs apps by tangling the config to their paths.

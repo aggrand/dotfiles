@@ -2,26 +2,23 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
   (package-initialize)
-  
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
- '(initial-frame-alist '((fullscreen . maximized)))
- '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
- '(safe-local-variable-values '((projectile-project-name . "data-pipes"))))
-  
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(custom-safe-themes
+     '("d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
+   '(initial-frame-alist '((fullscreen . maximized)))
+   '(org-export-backends '(ascii html icalendar latex md odt))
+   '(package-selected-packages
+     '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
 
   (require 'use-package)
   (setq use-package-always-ensure t)
@@ -198,7 +195,7 @@ apps are not started from a shell."
   :custom (projectile-completion-system 'ivy)
   :init
 (when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects" "~/org")))
+      (setq projectile-project-search-path '("~/projects" "~/org" "~/.dotfiles")))
 ;; TODO: Add back #'magit-status conditionally
 (setq projectile-switch-project-action #'projectile-dired))
 
@@ -482,7 +479,7 @@ apps are not started from a shell."
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/projects/misc-configs/emacs.org"))
+                      (expand-file-name "~/.dotfiles/emacs.org"))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
