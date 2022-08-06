@@ -1,15 +1,40 @@
 ---
 - hosts: localhost
+
+  # TODO: Firefox plugin config?
   tasks:
-    - name: Install common packages.
+    - name: Ensure common packages.
       community.general.homebrew:
         name:
+          - git
           - pyenv
           - emacs
+          - poetry
+          - kubectl
+          - minikube
+          - docker
+          - vim
+          - terraform
+          - stow
         state: present
 
-    - name: Install cask packages.
+    - name: Ensure cask packages.
       homebrew_cask:
         name:
+          - slack
           - firefox
+          - zoom
+          - spotify
+          - dropbox
         state: present
+
+    - name: Ensure git projects directory.
+      ansible.builtin.file:
+        path: ~/projects
+        state: directory
+
+    - name: Stow dotfiles
+      ansible.builtin.command: stow .
+      args:
+        chdir: ~/.dotfiles
+        creates: /path/to/database

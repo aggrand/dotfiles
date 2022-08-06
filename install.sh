@@ -34,3 +34,11 @@ pip3 install ansible
 
 echo "Running ansible."
 ansible-playbook install-playbook.yaml
+
+echo "Next steps:"
+echo "    Firefox addons"
+echo "        ABP, Bitwarden"
+echo "    Login everywhere"
+echo "        google, slack, zoom, github"
+echo "    Configure Kanopy access"
+echo "        https://github.com/10gen/kanopy-docs/blob/master/docs/configuration/kubeconfig.md"
