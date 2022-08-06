@@ -1,6 +1,24 @@
 ---
 - hosts: localhost
 
+  vars:
+    repos:
+      - {name: "dsi", repo: "git@github.com:aggrand/dsi.git", upstream: "git@github.com:10gen/dsi.git"}
+      - {name: "PrivateWorkloads", repo: "git@github.com:aggrand/PrivateWorkloads.git", upstream: "git@github.com:10gen/PrivateWorkloads.git"}
+      - {name: "genny", repo: "git@github.com:aggrand/genny.git", upstream: "git@github.com:mongodb/genny.git"}
+      - {name: "data-pipes", repo: "git@github.com:aggrand/data-pipes.git", upstream: "git@github.com:10gen/data-pipes.git"}
+      - {name: "data-pipes", repo: "git@github.com:aggrand/evergreen.git", upstream: "git@github.com:evergreen-ci/evergreen.git"}
+      - {name: "ftdc-tools", repo: "git@github.com:aggrand/ftdc-tools.git", upstream: "git@github.com:mongodb/ftdc-tools.git"}
+      - {name: "mongo", repo: "git@github.com:mongodb/mongo.git"}
+      - {name: "mongo-c-driver", repo: "git@github.com:mongodb/mongo-c-driver.git"}
+      - {name: "mongo-cxx-driver", repo: "git@github.com:mongodb/mongo-cxx-driver.git"}
+      - {name: "mongo-cxx-driver", repo: "git@github.com:mongodb/mongo-cxx-driver.git"}
+      - {name: "perf-summarizer-service", repo: "git@github.com:aggrand/perf-summarizer-service.git", upstream: "git@github.com:10gen/perf-summarizer-service.git"}
+      - {name: "performance-tooling-docs", repo: "git@github.com:aggrand/performance-tooling-docs.git", upstream: "git@github.com:10gen/performance-tooling-docs.git"}
+      - {name: "resume", repo: "git@github.com:aggrand/resume.git"}
+      - {name: "signal-processing-service", repo: "git@github.com:aggrand/signal-processing-service.git", upstream: "git@github.com:10gen/signal-processing-service.git"}
+      - {name: "vcpkg", repo: "git@github.com:aggrand/vcpkg.git", upstream: "git@github.com:10gen/vcpkg.git"}
+
   # TODO: Firefox plugin config?
   tasks:
     - name: Ensure common packages.
@@ -28,11 +46,6 @@
           - dropbox
         state: present
 
-    - name: Ensure git projects directory.
-      ansible.builtin.file:
-        path: ~/projects
-        state: directory
-
     - name: Stow dotfiles
       ansible.builtin.command: stow . -v
       args:
@@ -43,14 +56,34 @@
     - name: Stow stdout
       debug:
         msg: "{{ stow.stdout }}"
+      when: stow.stdout != ""
 
     - name: Stow stderr
       debug:
         msg: "{{ stow.stderr }}"
+      when: stow.stderr != ""
 
+    - name: Ensure git project directories.
+      ansible.builtin.file:
+        path: "~/projects/{{item.name}}"
+        state: directory
+      loop: "{{ vars.repos }}"
 
-    #- name: Clone a repo with separate git directory
-    #  ansible.builtin.git:
-    #    repo: https://github.com/ansible/ansible-examples.git
-    #    dest: /src/ansible-examples
-    #    separate_git_dir: /src/ansible-examples.git
+    - name: Clone git repositories
+      ansible.builtin.git:
+        repo: "{{item.repo}}"
+        dest: "~/projects/{{item.name}}"
+      loop: "{{ vars.repos }}"
+
+    - name: Add remote upstream to git repositories.
+      command:
+        # Git module can't use upstream.
+        cmd: git remote add upstream "{{ item.upstream }}"
+        chdir: "~/projects/{{ item.name }}"
+      register: add_result
+      when: '"upstream" in item'
+      changed_when: add_result.rc == 0
+      failed_when:
+        - add_result.rc != 0
+        - add_result.stderr | default('') is not search("remote .* already exists")
+      loop: "{{ vars.repos }}"
