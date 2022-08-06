@@ -34,7 +34,23 @@
         state: directory
 
     - name: Stow dotfiles
-      ansible.builtin.command: stow .
+      ansible.builtin.command: stow . -v
       args:
         chdir: ~/.dotfiles
-        creates: /path/to/database
+      register: stow
+      changed_when: stow.stdout != "" or stow.stderr != ""
+
+    - name: Stow stdout
+      debug:
+        msg: "{{ stow.stdout }}"
+
+    - name: Stow stderr
+      debug:
+        msg: "{{ stow.stderr }}"
+
+
+    #- name: Clone a repo with separate git directory
+    #  ansible.builtin.git:
+    #    repo: https://github.com/ansible/ansible-examples.git
+    #    dest: /src/ansible-examples
+    #    separate_git_dir: /src/ansible-examples.git
