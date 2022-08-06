@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install common packages.
+      community.general.homebrew:
+        name:
+          - pyenv
+          - emacs
+        state: present
+
+    - name: Install cask packages.
+      homebrew_cask:
+        name:
+          - firefox
+        state: present

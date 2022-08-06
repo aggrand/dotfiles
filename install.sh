@@ -33,3 +33,4 @@ echo "Installing ansible."
 pip3 install ansible
 
 echo "Running ansible."
+ansible-playbook install-playbook.yaml
