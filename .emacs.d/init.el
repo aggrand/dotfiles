@@ -20,8 +20,16 @@
    ;; If there is more than one, they won't work right.
    )
 
-  (require 'use-package)
-  (setq use-package-always-ensure t)
+   ;; Bootstrap 'use-package'
+   (eval-after-load 'gnutls
+       '(add-to-list 'gnutls-trustfiles "/etc/ssl/cert.pem"))
+   (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
+   (eval-when-compile
+       (require 'use-package))
+        (require 'bind-key)
+   (setq use-package-always-ensure t)
 
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
@@ -67,6 +75,7 @@ apps are not started from a shell."
 (crw/leader-keys
   "s" '(hydra-text-scale/body :which-key "scale text"))
 
+(use-package darktooth-theme)
 (load-theme 'darktooth)
 
 ;; Annoying
