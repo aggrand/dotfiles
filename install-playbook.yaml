@@ -3,11 +3,12 @@
 
   vars:
     repos:
+      # TODO: Add poplar/cedar/curator.
       - {name: "dsi", repo: "git@github.com:aggrand/dsi.git", upstream: "git@github.com:10gen/dsi.git"}
       - {name: "PrivateWorkloads", repo: "git@github.com:aggrand/PrivateWorkloads.git", upstream: "git@github.com:10gen/PrivateWorkloads.git"}
       - {name: "genny", repo: "git@github.com:aggrand/genny.git", upstream: "git@github.com:mongodb/genny.git"}
       - {name: "data-pipes", repo: "git@github.com:aggrand/data-pipes.git", upstream: "git@github.com:10gen/data-pipes.git"}
-      - {name: "data-pipes", repo: "git@github.com:aggrand/evergreen.git", upstream: "git@github.com:evergreen-ci/evergreen.git"}
+      - {name: "evergreen", repo: "git@github.com:aggrand/evergreen.git", upstream: "git@github.com:evergreen-ci/evergreen.git"}
       - {name: "ftdc-tools", repo: "git@github.com:aggrand/ftdc-tools.git", upstream: "git@github.com:mongodb/ftdc-tools.git"}
       - {name: "mongo", repo: "git@github.com:mongodb/mongo.git"}
       - {name: "mongo-c-driver", repo: "git@github.com:mongodb/mongo-c-driver.git"}
