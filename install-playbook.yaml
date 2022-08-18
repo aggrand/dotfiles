@@ -22,13 +22,16 @@
       - {name: "vcpkg", repo: "git@github.com:aggrand/vcpkg.git", upstream: "git@github.com:10gen/vcpkg.git"}
 
   # TODO: Firefox plugin config?
+  # TODO: Install both emacs fonts
+  # TODO: Fix issue with brew needing to already be installed
+  # TODO: Better working with already-existing directories
+  # TODO: Replace stow; all the emacs stuff getting committed
   tasks:
     - name: Ensure common packages.
       community.general.homebrew:
         name:
           - git
           - pyenv
-          - emacs
           - poetry
           - kubectl
           - minikube
@@ -36,6 +39,8 @@
           - vim
           - terraform
           - stow
+          - coreutils
+          - cmake
         state: present
 
     - name: Ensure cask packages.
@@ -46,6 +51,7 @@
           - zoom
           - spotify
           - dropbox
+          - emacs
         state: present
 
     - name: Stow dotfiles
@@ -64,6 +70,19 @@
       debug:
         msg: "{{ stow.stderr }}"
       when: stow.stderr != ""
+
+    # TODO: Make per-repo?
+    - name: Ensure global git email config.
+      git_config:
+        name: user.email
+        scope: global
+        value: "carl.worley@mongodb.com"
+
+    - name: Ensure global git username config.
+      git_config:
+        name: user.name
+        scope: global
+        value: "Raiden Worley"
 
     - name: Ensure git project directories.
       ansible.builtin.file:

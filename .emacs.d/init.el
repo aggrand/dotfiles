@@ -9,14 +9,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("2f9d95a93d9feb1fb5cec192f983edc36051fdcd5a0e832d4b87d71b91daa47d" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
+   '("0b7861ad7f8578f55a69971da5c7a7fa1f86e47c6428ee026208cfea9e7184e8" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
  '(initial-frame-alist '((fullscreen . maximized)))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
- '(safe-local-variable-values
-   '((projectile-project-name . "signal-processing-service")
-     (projectile-project-name . "data-pipes"))))
+   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
   
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -61,7 +58,7 @@ apps are not started from a shell."
     :config
     (general-create-definer crw/leader-keys
       :keymaps '(normal insert visual emacs)
-      :prefix "SPC"
+      :prefix "C-SPC"
       :global-prefix "C-SPC"))
 
   (use-package hydra)

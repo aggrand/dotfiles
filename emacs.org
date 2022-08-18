@@ -71,7 +71,7 @@ apps are not started from a shell."
     :config
     (general-create-definer crw/leader-keys
       :keymaps '(normal insert visual emacs)
-      :prefix "SPC"
+      :prefix "C-SPC"
       :global-prefix "C-SPC"))
 
   (use-package hydra)
