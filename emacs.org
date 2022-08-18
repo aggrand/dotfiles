@@ -244,7 +244,7 @@ Use the doom modeline. Note: you need to run ~M-x all-the-icons-install-fonts~ w
 (when (file-directory-p "~/projects")
       (setq projectile-project-search-path '("~/projects" "~/org" "~/.dotfiles")))
 ;; TODO: Add back #'magit-status conditionally
-(setq projectile-switch-project-action #'projectile-dired))
+(setq projectile-switch-project-action #'magit-status))
 
 (crw/leader-keys
     "p" 'projectile-command-map)
