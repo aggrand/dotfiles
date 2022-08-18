@@ -10,6 +10,7 @@
       - {name: "data-pipes", repo: "git@github.com:aggrand/data-pipes.git", upstream: "git@github.com:10gen/data-pipes.git"}
       - {name: "evergreen", repo: "git@github.com:aggrand/evergreen.git", upstream: "git@github.com:evergreen-ci/evergreen.git"}
       - {name: "ftdc-tools", repo: "git@github.com:aggrand/ftdc-tools.git", upstream: "git@github.com:mongodb/ftdc-tools.git"}
+      - {name: "perf-rollups", repo: "git@github.com:aggrand/perf-rollups.git", upstream: "git@github.com:10gen/perf-rollups.git"}
       - {name: "mongo", repo: "git@github.com:mongodb/mongo.git"}
       - {name: "mongo-c-driver", repo: "git@github.com:mongodb/mongo-c-driver.git"}
       - {name: "mongo-cxx-driver", repo: "git@github.com:mongodb/mongo-cxx-driver.git"}

@@ -2,23 +2,28 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
   (package-initialize)
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(custom-safe-themes
-     '("d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
-   '(initial-frame-alist '((fullscreen . maximized)))
-   '(org-export-backends '(ascii html icalendar latex md odt))
-   '(package-selected-packages
-     '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
+  
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("2f9d95a93d9feb1fb5cec192f983edc36051fdcd5a0e832d4b87d71b91daa47d" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
+ '(initial-frame-alist '((fullscreen . maximized)))
+ '(org-export-backends '(ascii html icalendar latex md odt))
+ '(package-selected-packages
+   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
+ '(safe-local-variable-values
+   '((projectile-project-name . "signal-processing-service")
+     (projectile-project-name . "data-pipes"))))
+  
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
    ;; Bootstrap 'use-package'
    (eval-after-load 'gnutls
