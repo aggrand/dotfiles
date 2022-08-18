@@ -13,8 +13,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
- '(safe-local-variable-values '((projectile-project-name . "data-pipes"))))
+   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
   
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -256,7 +255,7 @@ apps are not started from a shell."
 (use-package vterm
     :ensure t
     :init
-    (setq vterm-shell "/usr/local/bin/fish")
+    (setq vterm-shell "/opt/homebrew/bin/fish")
 )
 
 (crw/leader-keys
@@ -497,5 +496,20 @@ apps are not started from a shell."
       (org-babel-tangle))))
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+
+(defun launch-separate-emacs-in-terminal ()
+  (suspend-emacs "fg ; emacs -nw"))
+
+(defun launch-separate-emacs-under-x ()
+  (call-process "sh" nil nil nil "-c" "emacs &"))
+
+(defun restart-emacs ()
+  (interactive)
+  ;; We need the new emacs to be spawned after all kill-emacs-hooks
+  ;; have been processed and there is nothing interesting left
+  (let ((kill-emacs-hook (append kill-emacs-hook (list (if (display-graphic-p)
+                                                           #'launch-separate-emacs-under-x
+                                                         #'launch-separate-emacs-in-terminal)))))
+    (save-buffers-kill-emacs)))
 
 

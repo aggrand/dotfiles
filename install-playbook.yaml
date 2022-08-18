@@ -41,6 +41,10 @@
           - stow
           - coreutils
           - cmake
+          - libtool
+          - libvterm
+          - fish
+          - fisher
         state: present
 
     - name: Ensure cask packages.
@@ -53,6 +57,11 @@
           - dropbox
           - emacs
         state: present
+
+    - name: Get pretty fish theme
+      ansible.builtin.shell: fisher install catppuccin/fish
+      args:
+        executable: /opt/homebrew/bin/fish
 
     - name: Stow dotfiles
       ansible.builtin.command: stow . -v
