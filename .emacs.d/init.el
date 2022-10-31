@@ -13,7 +13,10 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
+   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
+ '(safe-local-variable-values
+   '((projectile-project-name . "signal-processing-service")
+     (projectile-project-name . "data-pipes"))))
   
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -208,7 +211,7 @@ apps are not started from a shell."
 (when (file-directory-p "~/projects")
       (setq projectile-project-search-path '("~/projects" "~/org" "~/.dotfiles")))
 ;; TODO: Add back #'magit-status conditionally
-(setq projectile-switch-project-action #'magit-status))
+(setq projectile-switch-project-action #'projectile-dired))
 
 (crw/leader-keys
     "p" 'projectile-command-map)

@@ -26,13 +26,14 @@
   # TODO: Fix issue with brew needing to already be installed
   # TODO: Better working with already-existing directories
   # TODO: Replace stow; all the emacs stuff getting committed
+  # TODO: install helm
+  # TODO: install poetry properly
   tasks:
     - name: Ensure common packages.
       community.general.homebrew:
         name:
           - git
           - pyenv
-          - poetry
           - kubectl
           - minikube
           - docker
