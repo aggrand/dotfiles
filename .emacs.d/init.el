@@ -13,10 +13,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil))
- '(safe-local-variable-values
-   '((projectile-project-name . "signal-processing-service")
-     (projectile-project-name . "data-pipes"))))
+   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
   
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -65,6 +62,11 @@ apps are not started from a shell."
       :global-prefix "C-SPC"))
 
   (use-package hydra)
+
+;; Beefier settings
+;;(setq max-lisp-eval-depth 100000)
+;;(setq max-specpdl-size 100000)
+(setq debug-on-error t)
 
 ;; font size
 (set-face-attribute 'default nil :font "Hack" :height 220)
@@ -161,6 +163,7 @@ apps are not started from a shell."
                     vterm-mode-hook
                     shell-mode-hook
                     treemacs-mode-hook
+                    lsp-ui-imenu-mode-hook
                     eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -274,7 +277,10 @@ apps are not started from a shell."
                   :init
                   ;; TODO: Properly use the general leader.
                   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-c l' 'C-l', 's-l'
-                  (setq lsp-log-io t)
+                  ;; (setq lsp-log-io t)  # For debugging
+                  (setq lsp-ui-doc-show-with-cursor t)
+                  (setq lsp-ui-imenu-window-width 40)
+                  (setq lsp-ui-imenu-auto-refresh t)
                   :config
                   (lsp-enable-which-key-integration t)
                   :custom
@@ -291,6 +297,11 @@ apps are not started from a shell."
 
         (use-package lsp-treemacs
           :after lsp)
+
+(crw/leader-keys
+    "i" 'lsp-ui-imenu)
+
+(setq lsp-response-timeout 30)
 
 (load-file "~/.emacs.d/bazel/bazel.el")
 (add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
@@ -311,7 +322,8 @@ apps are not started from a shell."
   (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode)))
 
 (use-package typescript-mode
-  :mode "\\.ts\\'"
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode))
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
@@ -320,6 +332,13 @@ apps are not started from a shell."
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+
+(use-package go-mode
+  :ensure t
+  :init (let ((gobin-path (expand-file-name "~/go/bin")))
+        (setenv "PATH" (concat gobin-path ":" (getenv "PATH")))
+        (add-to-list 'exec-path gobin-path))
+  :hook (go-mode . lsp-deferred))
 
     ;;(use-package python-mode
     ;;  :ensure t

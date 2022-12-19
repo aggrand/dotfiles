@@ -82,6 +82,11 @@ apps are not started from a shell."
 
 #+begin_src emacs-lisp
 
+;; Beefier settings
+;;(setq max-lisp-eval-depth 100000)
+;;(setq max-specpdl-size 100000)
+(setq debug-on-error t)
+
 ;; font size
 (set-face-attribute 'default nil :font "Hack" :height 220)
 
@@ -183,6 +188,7 @@ apps are not started from a shell."
                     vterm-mode-hook
                     shell-mode-hook
                     treemacs-mode-hook
+                    lsp-ui-imenu-mode-hook
                     eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -327,7 +333,10 @@ Requires a pyenv environment configured with ~pyenv virtualenv <python_version> 
                   :init
                   ;; TODO: Properly use the general leader.
                   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-c l' 'C-l', 's-l'
-                  (setq lsp-log-io t)
+                  ;; (setq lsp-log-io t)  # For debugging
+                  (setq lsp-ui-doc-show-with-cursor t)
+                  (setq lsp-ui-imenu-window-width 40)
+                  (setq lsp-ui-imenu-auto-refresh t)
                   :config
                   (lsp-enable-which-key-integration t)
                   :custom
@@ -344,6 +353,11 @@ Requires a pyenv environment configured with ~pyenv virtualenv <python_version> 
 
         (use-package lsp-treemacs
           :after lsp)
+
+(crw/leader-keys
+    "i" 'lsp-ui-imenu)
+
+(setq lsp-response-timeout 30)
 #+end_src
 *** Bazel
 #+begin_src emacs-lisp
@@ -376,7 +390,8 @@ A basic typescript setup.
 
 #+begin_src emacs-lisp
 (use-package typescript-mode
-  :mode "\\.ts\\'"
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode))
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
@@ -394,6 +409,17 @@ npm install -g typescript-language-server typescript
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+#+end_src
+
+*** Golang
+#+begin_src emacs-lisp
+(use-package go-mode
+  :ensure t
+  :init (let ((gobin-path (expand-file-name "~/go/bin")))
+        (setenv "PATH" (concat gobin-path ":" (getenv "PATH")))
+        (add-to-list 'exec-path gobin-path))
+  :hook (go-mode . lsp-deferred))
+
 #+end_src
 
 *** Python
