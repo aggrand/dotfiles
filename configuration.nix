@@ -116,10 +116,6 @@
     git
   ];
 
-  fonts.packages = with pkgs; [
-    nerdfonts
-  ];
-
   # Needed so zsh can complete system packages.
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -130,7 +126,14 @@
 
   home-manager.users.raiden = { pkgs, inputs, ... }: {
     # declared packages
-    home.packages = [ pkgs.htop pkgs.emacsPackages.vterm ];
+    home.packages = with pkgs; [
+      htop
+      git
+      ripgrep
+      coreutils
+      fd
+      clang
+    ];
 
     home.username = "raiden";
     home.homeDirectory = "/home/raiden";
