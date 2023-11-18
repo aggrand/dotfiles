@@ -87,7 +87,7 @@ apps are not started from a shell."
 (set-face-attribute 'default nil :font "Hack" :height 220)
 
 ;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "ETBembo" :height 220)
+;;(set-face-attribute 'variable-pitch nil :font "ETBembo" :height 220)
 
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"

@@ -116,6 +116,10 @@
     git
   ];
 
+  fonts.packages = with pkgs; [
+    nerdfonts
+  ];
+
   # Needed so zsh can complete system packages.
   environment.pathsToLink = [ "/share/zsh" ];
 
