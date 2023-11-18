@@ -129,10 +129,6 @@
     home.packages = with pkgs; [
       htop
       git
-      ripgrep
-      coreutils
-      fd
-      clang
     ];
 
     home.username = "raiden";
@@ -181,9 +177,6 @@
         }
       ];
     };
-
-    ## Emacs config
-    programs.emacs.enable = true;
 
     home.stateVersion = "23.05";
   };
