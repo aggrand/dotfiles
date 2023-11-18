@@ -178,11 +178,7 @@
     ## Emacs config
     programs.emacs = {
       enable = true;
-    };
-    home.file.".emacs.d" = {
-      enable = true;
-      recursive = false;
-      source = ./emacs.d;
+      extraConfig = readFile ./emacs-init.el;
     };
 
     home.stateVersion = "23.05";
