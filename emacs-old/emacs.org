@@ -1,5 +1,5 @@
 #+title: System Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/dotfiles/emacs.d/init.el :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :tangle ~/dotfiles/emacs-init.el :mkdirp yes
 
 * Package System Setup
 #+begin_src emacs-lisp
@@ -7,24 +7,11 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
   (package-initialize)
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(custom-safe-themes
-     '("d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
-   '(initial-frame-alist '((fullscreen . maximized)))
-   '(org-export-backends '(ascii html icalendar latex md odt))
-   '(package-selected-packages
-     '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-
+ 
+  (setq custom-file "~/.emacs.d/custom.el")
+  (when (file-exists-p custom-file)
+    (load custom-file))
+ 
    ;; Bootstrap 'use-package'
    (eval-after-load 'gnutls
        '(add-to-list 'gnutls-trustfiles "/etc/ssl/cert.pem"))
@@ -68,8 +55,8 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 
-(setq exec-path (append exec-path '("/Users/carl.worley/bin")))
-(setq exec-path (append exec-path '("/Users/carl.worley/n/bin")))
+(setq exec-path (append exec-path '("/Users/raiden/bin")))
+(setq exec-path (append exec-path '("/etc/profiles/per-user/raiden/bin")))
 #+end_src
 
 * UI Configuration
@@ -328,7 +315,7 @@ Requires a pyenv environment configured with ~pyenv virtualenv <python_version> 
   "g" 'magit)
 
 ;; TODO: Authenticate
-(use-package forge)
+;; (use-package forge)
 #+end_src
 ** Terminal
 #+begin_src emacs-lisp
@@ -383,8 +370,8 @@ Requires a pyenv environment configured with ~pyenv virtualenv <python_version> 
 #+end_src
 *** Bazel
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/bazel/bazel.el")
-(add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
+;; (load-file "~/.emacs.d/bazel/bazel.el")
+;; (add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
 #+end_src
 *** Yaml
 #+begin_src emacs-lisp
@@ -463,21 +450,21 @@ npm install -g typescript-language-server typescript
   :hook (python-mode . (lambda ()
                           (require 'lsp-python-ms)
                           (lsp-deferred))))  ; or lsp-deferred
-    (use-package pyenv-mode
-        ;; Integrate pyenv with Python-mode
-        :init
-        (let ((pyenv-path (expand-file-name "~/.pyenv/bin")))
-        (setenv "PATH" (concat pyenv-path ":" (getenv "PATH")))
-        (add-to-list 'exec-path pyenv-path))
-        :config
-        (pyenv-mode))
+    ;;(use-package pyenv-mode
+    ;;    ;; Integrate pyenv with Python-mode
+    ;;    :init
+    ;;    (let ((pyenv-path (expand-file-name "~/.pyenv/bin")))
+    ;;    (setenv "PATH" (concat pyenv-path ":" (getenv "PATH")))
+    ;;    (add-to-list 'exec-path pyenv-path))
+    ;;    :config
+    ;;    (pyenv-mode))
 
-      (defun projectile-pyenv-mode-set ()
-        "Set pyenv version matching project name."
-        (let ((project (projectile-project-name)))
-          (if (member project (pyenv-mode-versions))
-              (pyenv-mode-set project)
-            (pyenv-mode-unset))))
+    ;;  (defun projectile-pyenv-mode-set ()
+    ;;    "Set pyenv version matching project name."
+    ;;    (let ((project (projectile-project-name)))
+    ;;      (if (member project (pyenv-mode-versions))
+    ;;          (pyenv-mode-set project)
+    ;;        (pyenv-mode-unset))))
 
       (add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
 #+end_src
@@ -680,10 +667,10 @@ This function checks when saved whether this org file is the defined emacs.org f
 ** Finance
 
 #+begin_src emacs-lisp
-(add-to-list 'load-path "/Users/carl.worley/projects/beancount-mode")
-(require 'beancount)
-(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
-(add-hook 'beancount-mode-hook #'outline-minor-mode)
+;;(add-to-list 'load-path "/Users/carl.worley/projects/beancount-mode")
+;;(require 'beancount)
+;;(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+;;(add-hook 'beancount-mode-hook #'outline-minor-mode)
 #+end_src
 
 * Applications

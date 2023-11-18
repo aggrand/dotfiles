@@ -130,7 +130,7 @@
 
   home-manager.users.raiden = { pkgs, inputs, ... }: {
     # declared packages
-    home.packages = [ pkgs.htop ];
+    home.packages = [ pkgs.htop pkgs.emacsPackages.vterm ];
 
     home.username = "raiden";
     home.homeDirectory = "/home/raiden";
@@ -180,13 +180,7 @@
     };
 
     ## Emacs config
-    programs.emacs = {
-      enable = true;
-    };
-    home.file.".emacs" = {
-      enable = true;
-      source = ./emacs-init.el;
-    };
+    programs.emacs.enable = true;
 
     home.stateVersion = "23.05";
   };

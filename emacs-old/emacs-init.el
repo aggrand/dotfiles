@@ -3,38 +3,9 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
   (package-initialize)
   
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("d824f0976625bb3bb38d3f6dd10b017bdb4612f27102545a188deef0d88b0cd9" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" default))
- '(initial-frame-alist '((fullscreen . maximized)))
- '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages
-   '(org-tempo visual-fill-column org-bullets forge evil-magit magit projectile hydra general ivy-rich rainbow-delimiters markdown-mode evil-collection ivy-prescient prescient doom-modeline yaml-mode counsel ivy which-key darktooth-theme key-chord evil)))
-  
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-   ;; Bootstrap 'use-package'
-   (eval-after-load 'gnutls
-       '(add-to-list 'gnutls-trustfiles "/etc/ssl/cert.pem"))
-   (unless (package-installed-p 'use-package)
-       (package-refresh-contents)
-       (package-install 'use-package))
-   (eval-when-compile
-       (require 'use-package))
-        (require 'bind-key)
-   (setq use-package-always-ensure t)
-
-   ;; I think this is a hack
-   (add-to-list 'image-types 'svg)
+(setq custom-file "~/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (use-package auto-package-update
   :custom
@@ -61,8 +32,8 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 
-(setq exec-path (append exec-path '("/Users/carl.worley/bin")))
-(setq exec-path (append exec-path '("/Users/carl.worley/n/bin")))
+(setq exec-path (append exec-path '("/Users/raiden/bin")))
+(setq exec-path (append exec-path '("/etc/profiles/per-user/raiden/bin")))
 
 (use-package which-key
   :config
@@ -277,7 +248,7 @@ apps are not started from a shell."
   "g" 'magit)
 
 ;; TODO: Authenticate
-(use-package forge)
+;; (use-package forge)
 
 ;;(setq explicit-shell-file-name "/usr/local/bin/zsh")
 (use-package vterm
@@ -325,8 +296,8 @@ apps are not started from a shell."
 
 (setq lsp-response-timeout 30)
 
-(load-file "~/.emacs.d/bazel/bazel.el")
-(add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
+;; (load-file "~/.emacs.d/bazel/bazel.el")
+;; (add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
 
 (use-package yaml-mode
   :config
@@ -379,21 +350,21 @@ apps are not started from a shell."
 :hook (python-mode . (lambda ()
                         (require 'lsp-python-ms)
                         (lsp-deferred))))  ; or lsp-deferred
-  (use-package pyenv-mode
+  ;;(use-package pyenv-mode
       ;; Integrate pyenv with Python-mode
-      :init
-      (let ((pyenv-path (expand-file-name "~/.pyenv/bin")))
-      (setenv "PATH" (concat pyenv-path ":" (getenv "PATH")))
-      (add-to-list 'exec-path pyenv-path))
-      :config
-      (pyenv-mode))
+  ;;    :init
+  ;;    (let ((pyenv-path (expand-file-name "~/.pyenv/bin")))
+  ;;    (setenv "PATH" (concat pyenv-path ":" (getenv "PATH")))
+  ;;    (add-to-list 'exec-path pyenv-path))
+  ;;    :config
+  ;;    (pyenv-mode))
 
-    (defun projectile-pyenv-mode-set ()
-      "Set pyenv version matching project name."
-      (let ((project (projectile-project-name)))
-        (if (member project (pyenv-mode-versions))
-            (pyenv-mode-set project)
-          (pyenv-mode-unset))))
+  ;;  (defun projectile-pyenv-mode-set ()
+  ;;    "Set pyenv version matching project name."
+  ;;    (let ((project (projectile-project-name)))
+  ;;      (if (member project (pyenv-mode-versions))
+  ;;          (pyenv-mode-set project)
+  ;;        (pyenv-mode-unset))))
 
     (add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
 
@@ -561,9 +532,9 @@ apps are not started from a shell."
                                                          #'launch-separate-emacs-in-terminal)))))
     (save-buffers-kill-emacs)))
 
-(add-to-list 'load-path "/Users/carl.worley/projects/beancount-mode")
-(require 'beancount)
-(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
-(add-hook 'beancount-mode-hook #'outline-minor-mode)
+;;(add-to-list 'load-path "/Users/carl.worley/projects/beancount-mode")
+;;(require 'beancount)
+;;(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+;;(add-hook 'beancount-mode-hook #'outline-minor-mode)
 
 
