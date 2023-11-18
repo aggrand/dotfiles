@@ -179,10 +179,10 @@
     programs.emacs = {
       enable = true;
     };
-    home.file.testfile = {
+    home.file.".emacs.d" = {
       enable = true;
-      #recursive = false;
-      source = ./init.el;
+      recursive = false;
+      source = ./emacs.d;
     };
 
     home.stateVersion = "23.05";
