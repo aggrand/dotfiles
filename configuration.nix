@@ -178,7 +178,10 @@
     ## Emacs config
     programs.emacs = {
       enable = true;
-      extraConfig = readFile ./emacs-init.el;
+    };
+    home.file.".emacs" = {
+      enable = true;
+      source = ./emacs-init.el;
     };
 
     home.stateVersion = "23.05";
