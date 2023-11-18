@@ -175,6 +175,16 @@
       ];
     };
 
+    ## Emacs config
+    programs.emacs = {
+      enable = true;
+    };
+    home.file.testfile = {
+      enable = true;
+      #recursive = false;
+      source = ./init.el;
+    };
+
     home.stateVersion = "23.05";
   };
 

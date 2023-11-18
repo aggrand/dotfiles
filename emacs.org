@@ -1,5 +1,5 @@
 #+title: System Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.dotfiles/.emacs.d/init.el :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :tangle ~/dotfiles/emacs.d/init.el :mkdirp yes
 
 * Package System Setup
 #+begin_src emacs-lisp
