@@ -134,6 +134,8 @@
     home.username = "raiden";
     home.homeDirectory = "/home/raiden";
 
+    imports = [ inputs.nix-doom-emacs.hmModule ];
+
     programs.firefox = {
       enable = true;
       profiles.default = {
@@ -176,6 +178,11 @@
           file = "p10k.zsh";
         }
       ];
+    };
+
+    programs.doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./doom.d;
     };
 
     home.stateVersion = "23.05";
