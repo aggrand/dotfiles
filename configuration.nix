@@ -144,6 +144,7 @@
       iosevka
       cmake
       gnumake
+      libtool
       nixfmt
       python3
       #isort
