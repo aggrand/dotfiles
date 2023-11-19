@@ -137,6 +137,9 @@
       coreutils
       fd
       clang
+
+      pandoc
+      shellcheck
     ];
 
     home.username = "raiden";
@@ -184,6 +187,7 @@
           file = "p10k.zsh";
         }
       ];
+      initExtra = "export PATH=$PATH:~/.emacs.d/bin";
     };
 
     home.file.".doom.d" = {
