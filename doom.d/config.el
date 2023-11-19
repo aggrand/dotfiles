@@ -76,3 +76,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(when (file-directory-p "~/projects")
+      (setq projectile-project-search-path '("~/projects" "~/org" "~/dotfiles")))
+;; TODO: Add back #'magit-status conditionally
+(setq projectile-switch-project-action #'projectile-dired)

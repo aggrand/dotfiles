@@ -138,9 +138,18 @@
       fd
       clang
 
+      # Emacs config-specific stuff
       pandoc
       shellcheck
       iosevka
+      cmake
+      gnumake
+      nixfmt
+      python3
+      #isort
+      #pipenv
+      #python311Packages.nose
+      #python311Packages.pytest
     ];
 
     home.username = "raiden";

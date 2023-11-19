@@ -205,7 +205,7 @@ apps are not started from a shell."
   :custom (projectile-completion-system 'ivy)
   :init
 (when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects" "~/org" "~/.dotfiles")))
+      (setq projectile-project-search-path '("~/projects" "~/org" "~/dotfiles")))
 ;; TODO: Add back #'magit-status conditionally
 (setq projectile-switch-project-action #'projectile-dired))
 
