@@ -140,6 +140,7 @@
 
       pandoc
       shellcheck
+      iosevka
     ];
 
     home.username = "raiden";
@@ -194,6 +195,7 @@
       enable = true;
       source = ./doom.d;
     };
+    #services.emacs.enable = true;
 
     home.stateVersion = "23.05";
   };
