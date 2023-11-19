@@ -35,6 +35,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
+  # Recommend using nmtui to configure.
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -60,7 +61,8 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.exwm.enable = true;
 
   services.xserver.libinput.touchpad.tapping = false;
   services.xserver.libinput.touchpad.naturalScrolling = true;

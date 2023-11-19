@@ -80,4 +80,15 @@
 (when (file-directory-p "~/projects")
       (setq projectile-project-search-path '("~/projects" "~/org" "~/dotfiles")))
 ;; TODO: Add back #'magit-status conditionally
+;; TODO: Doesn't seem to work in Doom.
 (setq projectile-switch-project-action #'projectile-dired)
+
+
+;; EXWM Config
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-example)
+(require 'exwm-randr)
+;; (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1"))
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
