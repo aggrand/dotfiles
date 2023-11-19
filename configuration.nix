@@ -129,6 +129,14 @@
     home.packages = with pkgs; [
       htop
       git
+
+      # Doom emacs requirements
+      git
+      emacs
+      ripgrep
+      coreutils
+      fd
+      clang
     ];
 
     home.username = "raiden";
@@ -176,6 +184,11 @@
           file = "p10k.zsh";
         }
       ];
+    };
+
+    home.file.".doom.d" = {
+      enable = true;
+      source = ./doom.d;
     };
 
     home.stateVersion = "23.05";
