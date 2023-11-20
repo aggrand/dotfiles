@@ -174,6 +174,7 @@
 ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
 (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
 
+(setq doom-leader-alt-key "<s-SPC>")
 (exwm-input-set-key (kbd doom-leader-alt-key) doom-leader-map)
 
 ;; The following example demonstrates how to use simulation keys to mimic
