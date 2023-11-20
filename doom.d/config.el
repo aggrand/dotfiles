@@ -177,33 +177,6 @@
 (setq doom-leader-alt-key "<s-SPC>")
 (exwm-input-set-key (kbd doom-leader-alt-key) doom-leader-map)
 
-;; The following example demonstrates how to use simulation keys to mimic
-;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
-;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
-;; and DEST is what EXWM actually sends to application.  Note that both SRC
-;; and DEST should be key sequences (vector or string).
-(setq exwm-input-simulation-keys
-      '(
-        ;; movement
-        ([?\C-b] . [left])
-        ([?\M-b] . [C-left])
-        ([?\C-f] . [right])
-        ([?\M-f] . [C-right])
-        ([?\C-p] . [up])
-        ([?\C-n] . [down])
-        ([?\C-a] . [home])
-        ([?\C-e] . [end])
-        ([?\M-v] . [prior])
-        ([?\C-v] . [next])
-        ([?\C-d] . [delete])
-        ([?\C-k] . [S-end delete])
-        ;; cut/paste.
-        ([?\C-w] . [?\C-x])
-        ([?\M-w] . [?\C-c])
-        ([?\C-y] . [?\C-v])
-        ;; search
-        ([?\C-s] . [?\C-f])))
-
 ;; You can hide the minibuffer and echo area when they're not used, by
 ;; uncommenting the following line.
 ;(setq exwm-workspace-minibuffer-position 'bottom)
@@ -216,4 +189,12 @@
 (map! :leader
        (:prefix ("e". "exwm")
          :desc "Reset" "r" 'exwm-reset
+         :desc "Workspace" "w" 'exwm-workspace-switch
+         :desc "Fullscren" "f" 'exwm-layout-set-fullscreen
+         :desc "Char mode" "c" 'exwm-input-release-keyboard
+         :desc "Move" "m" 'exwm-workspace-move-window
+         :desc "Modeline" "o" 'exwm-layout-toggle-mode-line
 ))
+
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
