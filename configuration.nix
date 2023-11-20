@@ -56,25 +56,34 @@
     LC_TIME = "es_AR.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager.exwm.enable = true;
-
-  services.xserver.libinput.touchpad.tapping = false;
-  services.xserver.libinput.touchpad.naturalScrolling = true;
-  services.xserver.libinput.touchpad.accelSpeed = "0.5";
-  services.xserver.libinput.touchpad.clickMethod = "clickfinger";
-
-  # Configure keymap in X11
+  # X11 / Wayland windowing settings
   services.xserver = {
+    enable = true;
+    displayManager.sddm.enable = true;
+    #displayManager.gdm = {
+    #  enable = true;
+    #  wayland = true;
+    #};
+
     layout = "us";
     xkbVariant = "";
     xkbOptions = "ctrl:swapcaps";
+
+    libinput.touchpad = {
+      tapping = false;
+      naturalScrolling = true;
+      accelSpeed = "0.5";
+      clickMethod = "clickfinger";
+    };
   };
+
+  # Desktop Environment.
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.exwm.enable = true;
+  #programs.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true;
+  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -116,6 +125,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    # rofi-wayland
   ];
 
   # Needed so zsh can complete system packages.
