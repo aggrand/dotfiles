@@ -205,5 +205,4 @@
 ))
 
 ;; Turn off ido mode, which exwm enables by default.
-;; TODO: This doesn't work, try to improve
-(add-hook 'after-init-hook #'ido-mode 0)
+(add-hook 'exwm-init-hook #'ido-mode)
