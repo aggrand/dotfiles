@@ -101,11 +101,10 @@
 ;; to or back from a floating frame (remember 'C-x 5 o' if you refuse this
 ;; proposal however).
 ;; You may also want to call `exwm-config-ido' later (see below).
-(ido-mode 1)
 
 ;; Emacs server is not required to run EXWM but it has some interesting uses
 ;; (see next section).
-(server-start)
+;; (server-start)
 
 ;;;; Below are configurations for EXWM.
 
@@ -117,8 +116,9 @@
 (require 'exwm)
 
 ;; Fix problems with Ido (if you use it).
-(require 'exwm-config)
-(exwm-config-ido)
+;; (require 'exwm-config)
+;; (exwm-config-ido)
+;; (exwm-config--fix/ido-buffer-window-other-frame)
 
 ;; Set the initial number of workspaces (they can also be created later).
 (setq exwm-workspace-number 4)
@@ -211,3 +211,9 @@
 ;; Do not forget to enable EXWM. It will start by itself when things are
 ;; ready.  You can put it _anywhere_ in your configuration.
 (exwm-enable)
+(display-battery-mode)
+
+(map! :leader
+       (:prefix ("e". "exwm")
+         :desc "Reset" "r" 'exwm-reset
+))
