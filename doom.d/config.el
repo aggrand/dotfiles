@@ -94,6 +94,8 @@
 
 ;; Turn on `display-time-mode' if you don't use an external bar.
 (setq display-time-default-load-average nil)
+(setq display-time-day-and-date t)
+(setq display-time-24hr-format t)
 (display-time-mode t)
 
 ;; You are strongly encouraged to enable something like `ido-mode' to alter
@@ -177,6 +179,9 @@
 (setq doom-leader-alt-key "<s-SPC>")
 (exwm-input-set-key (kbd doom-leader-alt-key) doom-leader-map)
 
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
+
 ;; You can hide the minibuffer and echo area when they're not used, by
 ;; uncommenting the following line.
 ;; (setq exwm-workspace-minibuffer-position 'bottom)
@@ -194,12 +199,11 @@
          :desc "Char mode" "c" 'exwm-input-release-keyboard
          :desc "Move" "m" 'exwm-workspace-move-window
          :desc "Modeline" "o" 'exwm-layout-toggle-mode-line
+         :desc "Run" "r" #'(lambda (command)
+		     (interactive (list (read-shell-command "$ ")))
+		     (start-process-shell-command command nil command))
 ))
 
-(require 'exwm-systemtray)
-(exwm-systemtray-enable)
-
-(vertico-buffer-mode t)
-
 ;; Turn off ido mode, which exwm enables by default.
+;; TODO: This doesn't work, try to improve
 (add-hook 'after-init-hook #'ido-mode 0)
