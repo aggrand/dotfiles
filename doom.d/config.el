@@ -106,7 +106,7 @@
 ;; (see next section).
 ;; (server-start)
 
-;;;; Below are configurations for EXWM.
+;; Below are configurations for EXWM.
 
 ;; Add paths (not required if EXWM is installed from GNU ELPA).
 ;(add-to-list 'load-path "/path/to/xelb/")
@@ -115,21 +115,21 @@
 ;; Load EXWM.
 (require 'exwm)
 
-;; Fix problems with Ido (if you use it).
-;; (require 'exwm-config)
-;; (exwm-config-ido)
-;; (exwm-config--fix/ido-buffer-window-other-frame)
-
+;; ;; Fix problems with Ido (if you use it).
+;; ;; (require 'exwm-config)
+;; ;; (exwm-config-ido)
+;; ;; (exwm-config--fix/ido-buffer-window-other-frame)
+;;
 ;; Set the initial number of workspaces (they can also be created later).
 (setq exwm-workspace-number 4)
-
+;;
 ;; All buffers created in EXWM mode are named "*EXWM*". You may want to
 ;; change it in `exwm-update-class-hook' and `exwm-update-title-hook', which
 ;; are run when a new X window class name or title is available.  Here's
 ;; some advice on this topic:
 ;; + Always use `exwm-workspace-rename-buffer` to avoid naming conflict.
 ;; + For applications with multiple windows (e.g. GIMP), the class names of
-;    all windows are probably the same.  Using window titles for them makes
+;;   all windows are probably the same.  Using window titles for them makes
 ;;   more sense.
 ;; In the following example, we use class names for all windows except for
 ;; Java applications and GIMP.
@@ -179,8 +179,8 @@
 
 ;; You can hide the minibuffer and echo area when they're not used, by
 ;; uncommenting the following line.
-;(setq exwm-workspace-minibuffer-position 'bottom)
-
+;; (setq exwm-workspace-minibuffer-position 'bottom)
+;;
 ;; Do not forget to enable EXWM. It will start by itself when things are
 ;; ready.  You can put it _anywhere_ in your configuration.
 (exwm-enable)
@@ -198,3 +198,8 @@
 
 (require 'exwm-systemtray)
 (exwm-systemtray-enable)
+
+(vertico-buffer-mode t)
+
+;; Turn off ido mode, which exwm enables by default.
+(add-hook 'after-init-hook #'ido-mode 0)
