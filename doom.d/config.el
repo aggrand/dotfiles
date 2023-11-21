@@ -83,7 +83,12 @@
 ;; TODO: Doesn't seem to work in Doom.
 (setq projectile-switch-project-action #'projectile-dired)
 
-;; EXWM Configs below
+;; ----------------------     EXWM Configs below    -----------------------
+
+;; Launches a program that runs without a shell.
+(defun run-in-background (command)
+  (let ((command-parts (split-string command "[ ]+")))
+    (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
 
 ;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
 (menu-bar-mode -1)
@@ -204,5 +209,11 @@
 		     (start-process-shell-command command nil command))
 ))
 
-;; Turn off ido mode, which exwm enables by default.
-(add-hook 'exwm-init-hook #'ido-mode)
+(defun exwm-init-hook ()
+  ;; Turn off ido mode, which exwm enables by default.
+  (ido-mode 0))
+  ;; Launch apps that will run in the background
+  ;; (efs/run-in-background "nm-applet")
+  ;;(efs/run-in-background "plasma-pa"))
+  ;; (efs/run-in-background "blueman-applet"))
+(add-hook 'exwm-init-hook #'exwm-init-hook)
