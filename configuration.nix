@@ -38,6 +38,9 @@
   # Recommend using nmtui to configure.
   networking.networkmanager.enable = true;
 
+  # Enable docker daemon
+  virtualisation.docker.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Argentina/Buenos_Aires";
 
@@ -112,7 +115,7 @@
   users.users.raiden = {
     isNormalUser = true;
     description = "raiden";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -127,6 +130,16 @@
     git
     pavucontrol
   ];
+
+  programs.steam = {
+    enable = true;
+    #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+
+
+
 
   # Needed so zsh can complete system packages.
   environment.pathsToLink = [ "/share/zsh" ];
@@ -163,11 +176,20 @@
       #pipenv
       #python311Packages.nose
       #python311Packages.pytest
+
+      mpv
+      steam
+      anki
+
+      ansible
+      yamllint
+      ansible-lint
     ];
 
     home.username = "raiden";
     home.homeDirectory = "/home/raiden";
 
+    # TODO: Improve privacy settings automatically (https everywhere, don't collect data, don't ask for password)
     programs.firefox = {
       enable = true;
       profiles.default = {

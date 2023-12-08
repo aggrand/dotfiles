@@ -78,7 +78,7 @@
 ;; they are implemented.
 
 (when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects" "~/org" "~/dotfiles")))
+      (setq projectile-project-search-path '("~/projects")))
 ;; TODO: Add back #'magit-status conditionally
 ;; TODO: Doesn't seem to work in Doom.
 (setq projectile-switch-project-action #'projectile-dired)
@@ -196,17 +196,20 @@
 (exwm-enable)
 (display-battery-mode)
 
+;; TODO: Make these work
 (map! :leader
        (:prefix ("e". "exwm")
          :desc "Reset" "r" 'exwm-reset
          :desc "Workspace" "w" 'exwm-workspace-switch
          :desc "Fullscren" "f" 'exwm-layout-set-fullscreen
-         :desc "Char mode" "c" 'exwm-input-release-keyboard
+         :desc "Char mode" "a" 'exwm-input-release-keyboard
          :desc "Move" "m" 'exwm-workspace-move-window
          :desc "Modeline" "o" 'exwm-layout-toggle-mode-line
          :desc "Run" "r" #'(lambda (command)
 		     (interactive (list (read-shell-command "$ ")))
 		     (start-process-shell-command command nil command))
+         :desc "Volume" "v" #'(start-process-shell-command "pavucontrol" nil "pavucontrol")
+         :desc "Network" "n" #'(start-process-shell-command "nmtui" nil "nmtui")
 ))
 
 (defun exwm-init-hook ()
@@ -217,3 +220,6 @@
   ;;(efs/run-in-background "plasma-pa"))
   ;; (efs/run-in-background "blueman-applet"))
 (add-hook 'exwm-init-hook #'exwm-init-hook)
+
+;; TODO Keybind meta structure editing to be constistent
+;; want: meta-j/k to always move the line, and meta-S-j/k to always move subtree
