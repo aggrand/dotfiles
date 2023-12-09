@@ -3,4 +3,3 @@
 !.emacs.d/bazel/bazel.el
 .config/fish/*
 !.config/fish/config.fish
-hardware-configuration.nix
