@@ -9,6 +9,8 @@ if [ ! -f "/home/user0/.emacs.d/bin/doom" ]; then
 	pushd /home/user0
 	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 	~/.emacs.d/bin/doom install
+	echo "Don't forget to install nerd fonts inside emacs"
+	sleep 5
 	popd
 fi
 
