@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Nix Settings
@@ -81,8 +81,8 @@
   };
 
   # Desktop Environment.
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager.exwm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.windowManager.exwm.enable = true;
   #programs.hyprland = {
   #  enable = true;
   #  xwayland.enable = true;
@@ -112,9 +112,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.raiden = {
+  users.users.user0 = {
     isNormalUser = true;
-    description = "raiden";
+    description = "user0";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
@@ -149,7 +149,7 @@
   # Must be enabled at the top, regardless of home-manager configs.
   programs.zsh.enable = true;
 
-  home-manager.users.raiden = { pkgs, inputs, ... }: {
+  home-manager.users.user0 = { pkgs, inputs, ... }: {
     # declared packages
     home.packages = with pkgs; [
       htop
@@ -186,8 +186,8 @@
       ansible-lint
     ];
 
-    home.username = "raiden";
-    home.homeDirectory = "/home/raiden";
+    home.username = "user0";
+    home.homeDirectory = "/home/user0";
 
     # TODO: Improve privacy settings automatically (https everywhere, don't collect data, don't ask for password)
     programs.firefox = {

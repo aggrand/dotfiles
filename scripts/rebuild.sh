@@ -4,5 +4,13 @@ set -eoux pipefail
 sudo nixos-rebuild switch --flake .#nixos
 
 # TODO: Use the nix doom repo. I had trouble with it before.
-~/.emacs.d/bin/doom sync
-~/.emacs.d/bin/doom doctor
+# Remember to install nerd fonts inside emacs
+if [ ! -f "/home/user0/.emacs.d/bin/doom" ]; then
+	pushd /home/user0
+	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+	~/.emacs.d/bin/doom install
+	popd
+fi
+
+/home/user0/.emacs.d/bin/doom sync
+/home/user0/.emacs.d/bin/doom doctor
