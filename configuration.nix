@@ -297,7 +297,7 @@
         show-icons = true;
         icon-theme = "Papirus";
       };
-      font = "Iosevka 10";
+      font = "Iosevka 20";
       theme = ./rofi.rasi;
     };
 
