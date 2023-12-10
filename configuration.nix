@@ -67,10 +67,7 @@
   #services.xserver = {
   #  enable = true;
   #  displayManager.sddm.enable = true;
-  #  #displayManager.gdm = {
-  #  #  enable = true;
-  #  #  wayland = true;
-  #  #};
+
 
   #  layout = "us";
   #  xkbVariant = "";
@@ -103,6 +100,28 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session.command = ''
+       ${pkgs.greetd.tuigreet}/bin/tuigreet \
+         --time \
+         --asterisks \
+         --cmd Hyprland
+    '';
+    };
+  };
+
+  # Below configs to stop systemd and kernel from writing over this.
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   # Enable CUPS to print documents.
@@ -150,8 +169,9 @@
     dunst
     libnotify
     kitty
-    rofi-wayland
     networkmanagerapplet
+    neofetch
+    greetd.tuigreet
   ];
 
   programs.steam = {
@@ -266,6 +286,19 @@
       enable = true;
       source = ./hypr;
       target = ".config/hypr";
+    };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      extraConfig = {
+        display-drun = "Applications:";
+        drun-display-format = "{name}";
+        show-icons = true;
+        icon-theme = "Papirus";
+      };
+      font = "Iosevka 10";
+      theme = ./rofi.rasi;
     };
 
     home.stateVersion = "23.05";
