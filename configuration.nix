@@ -265,7 +265,7 @@
     home.file.hypr = {
       enable = true;
       source = ./hypr;
-      target = "config/hypr";
+      target = ".config/hypr";
     };
 
     home.stateVersion = "23.05";
