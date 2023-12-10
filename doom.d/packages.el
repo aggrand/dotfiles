@@ -50,4 +50,4 @@
 ;(unpin! t)
 
 (package! catppuccin-theme)
-(package! exwm)
+;;(package! exwm)

@@ -2,7 +2,7 @@
 # Run as root!
 set -eoux pipefail
 
-nix-env --install git
+nix-env --install git vim
 mkdir -p /home/user0/projects
 
 cd /home/user0/projects

@@ -27,7 +27,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  boot.initrd.luks.devices."luks-65d3eb80-568e-40af-9b60-65a54b2ad792".device = "/dev/disk/by-uuid/65d3eb80-568e-40af-9b60-65a54b2ad792";
+  networking.hostName = "personal-laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -36,7 +37,10 @@
 
   # Enable networking
   # Recommend using nmtui to configure.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.macAddress = "random";
+  };
 
   # Enable docker daemon
   virtualisation.docker.enable = true;
@@ -60,33 +64,46 @@
   };
 
   # X11 / Wayland windowing settings
-  services.xserver = {
-    enable = true;
-    displayManager.sddm.enable = true;
-    #displayManager.gdm = {
-    #  enable = true;
-    #  wayland = true;
-    #};
+  #services.xserver = {
+  #  enable = true;
+  #  displayManager.sddm.enable = true;
+  #  #displayManager.gdm = {
+  #  #  enable = true;
+  #  #  wayland = true;
+  #  #};
 
-    layout = "us";
-    xkbVariant = "";
-    xkbOptions = "ctrl:swapcaps";
+  #  layout = "us";
+  #  xkbVariant = "";
+  #  xkbOptions = "ctrl:swapcaps";
 
-    libinput.touchpad = {
-      tapping = false;
-      naturalScrolling = true;
-      accelSpeed = "0.5";
-      clickMethod = "clickfinger";
-    };
-  };
+  #  libinput.touchpad = {
+  #    tapping = false;
+  #    naturalScrolling = true;
+  #    accelSpeed = "0.5";
+  #    clickMethod = "clickfinger";
+  #  };
+  #};
 
   # Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.windowManager.exwm.enable = true;
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #};
+
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+    xwayland.enable = true;
+  };
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+  hardware = {
+    opengl.enable = true;
+    nvidia.modesetting.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -129,6 +146,12 @@
     wget
     git
     pavucontrol
+    waybar
+    dunst
+    libnotify
+    kitty
+    rofi-wayland
+    networkmanagerapplet
   ];
 
   programs.steam = {
@@ -137,7 +160,6 @@
     #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
-
 
 
 
@@ -240,6 +262,11 @@
       source = ./doom.d;
     };
     #services.emacs.enable = true;
+    home.file.hypr = {
+      enable = true;
+      source = ./hypr;
+      target = "config/hypr";
+    };
 
     home.stateVersion = "23.05";
   };
