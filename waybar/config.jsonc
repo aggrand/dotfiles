@@ -46,7 +46,8 @@
             "tor": "",
             "orbot": "",
             "steam": "󰓓",
-            "signal": "󰍡"
+            "signal": "󰍡",
+            "anki": "󰙏"
         },
     },
     "tray": {
@@ -65,7 +66,8 @@
         "format-wifi": "{icon} {signalStrength}%",
         "format-disconnected": "󰤮",
         "tooltip-format": "{essid}",
-        "on-click": "foot nmtui",
+        // TODO: Figure out how to do without sudo
+        "on-click": "foot sudo nmtui",
         "format-icons": ["󰤯 ","󰤟 ","󰤢 ","󰤢 ","󰤨 "],
     },
     "cpu": {
