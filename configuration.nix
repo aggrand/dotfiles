@@ -233,6 +233,7 @@
 
       brightnessctl
       pamixer
+      wpaperd
     ];
 
     home.username = "user0";
@@ -305,6 +306,12 @@
       enable = true;
       source = ./foot;
       target = ".config/foot";
+    };
+
+    home.file.wpaperd = {
+      enable = true;
+      source = ./wpaperd;
+      target = ".config/wpaperd";
     };
 
     programs.rofi = {
