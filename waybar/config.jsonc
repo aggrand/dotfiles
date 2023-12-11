@@ -65,7 +65,7 @@
         "format-wifi": "{signalStrength}% {icon}",
         "format-disconnected": "󰤮",
         "tooltip-format": "{essid}",
-        "on-click": "kitty nmtui",
+        "on-click": "foot nmtui",
         "format-icons": ["󰤯 ","󰤟 ","󰤢 ","󰤢 ","󰤨 "],
     },
     "cpu": {

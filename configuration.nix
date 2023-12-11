@@ -173,7 +173,7 @@
     waybar
     dunst
     libnotify
-    kitty
+    foot
     networkmanagerapplet
     neofetch
     greetd.tuigreet
