@@ -85,6 +85,11 @@
   #services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.windowManager.exwm.enable = true;
 
+  fonts.packages = with pkgs; [
+    font-awesome
+    nerdfonts
+  ];
+
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
@@ -226,6 +231,9 @@
       ansible
       yamllint
       ansible-lint
+
+      brightnessctl
+      pamixer
     ];
 
     home.username = "user0";
@@ -288,6 +296,12 @@
       target = ".config/hypr";
     };
 
+    home.file.waybar = {
+      enable = true;
+      source = ./waybar;
+      target = ".config/waybar";
+    };
+
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
@@ -297,7 +311,7 @@
         show-icons = true;
         icon-theme = "Papirus";
       };
-      font = "Iosevka 20";
+      font = "Noto Sans 20";
       theme = ./rofi.rasi;
     };
 
