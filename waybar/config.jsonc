@@ -62,31 +62,31 @@
     },*/
     "network": {
         /* "format-wifi": "直", */
-        "format-wifi": "{signalStrength}% {icon}",
+        "format-wifi": "{icon} {signalStrength}%",
         "format-disconnected": "󰤮",
         "tooltip-format": "{essid}",
         "on-click": "foot nmtui",
         "format-icons": ["󰤯 ","󰤟 ","󰤢 ","󰤢 ","󰤨 "],
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "  {usage}%",
         "tooltip": true,
     },
     "memory": {
-        "format": "{}% "
+        "format": "  {}%"
     },
     "disk": {
-        "format": "{percentage_used}% 󰋊",
+        "format": "󰋊 {percentage_used}%",
         "tooltip": true,
     },
     "temperature": {
-        "format": "{temperatureC}°C ",
+        "format": " {temperatureC}°C",
         "critical-threshold": 80,
-        "format-critical": "CRITICAL TEMP ",
+        "format-critical": " CRITICAL TEMP",
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
@@ -98,11 +98,11 @@
             "critical": 15
         },
         "interval": 10,
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-charging": "{capacity}% ",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-charging": " {capacity}%",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format-alt": "{icon} {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         //"format-icons": ["", "", "", "", ""]
@@ -115,7 +115,7 @@
 
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "format-muted": "",
         "on-click": "pamixer -t",
         "on-click-right": "pavucontrol",
