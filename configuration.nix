@@ -194,7 +194,7 @@
   # Needed so zsh can complete system packages.
   environment.pathsToLink = [ "/share/zsh" ];
 
-  programs.vim.defaultEditor = true;
+  #programs.vim.defaultEditor = true;
 
   # Must be enabled at the top, regardless of home-manager configs.
   programs.zsh.enable = true;
@@ -206,8 +206,8 @@
       git
 
       # Doom emacs requirements
-      git
       emacs
+      git
       ripgrep
       coreutils
       fd
@@ -299,7 +299,11 @@
       enable = true;
       source = ./doom.d;
     };
-    #services.emacs.enable = true;
+    services.emacs = {
+      enable = true;
+      client.enable = true;
+      defaultEditor = true;
+    };
     home.file.hypr = {
       enable = true;
       source = ./hypr;
