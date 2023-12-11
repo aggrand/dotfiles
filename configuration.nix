@@ -174,7 +174,7 @@
     libnotify
     foot
     networkmanagerapplet
-    neofetch
+    fastfetch
     greetd.tuigreet
   ];
 
@@ -234,6 +234,8 @@
       brightnessctl
       pamixer
       wpaperd
+      unzip
+      fastfetch
     ];
 
     home.username = "user0";
@@ -282,7 +284,9 @@
           file = "p10k.zsh";
         }
       ];
-      initExtra = "export PATH=$PATH:~/.emacs.d/bin";
+      initExtra = ''
+        export PATH=$PATH:~/.emacs.d/bin
+      '';
     };
 
     home.file.".doom.d" = {
