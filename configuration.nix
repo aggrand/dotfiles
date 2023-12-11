@@ -240,6 +240,8 @@
       wpaperd
       unzip
       fastfetch
+
+      rofi-power-menu
     ];
 
     home.username = "user0";
