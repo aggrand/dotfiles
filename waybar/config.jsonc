@@ -66,8 +66,7 @@
         "format-wifi": "{icon} {signalStrength}%",
         "format-disconnected": "󰤮",
         "tooltip-format": "{essid}",
-        // TODO: Figure out how to do without sudo
-        "on-click": "foot sudo nmtui",
+        "on-click": "foot /home/user0/.config/hypr/nmtui.sh",
         "format-icons": ["󰤯 ","󰤟 ","󰤢 ","󰤢 ","󰤨 "],
     },
     "cpu": {
