@@ -231,20 +231,32 @@
 
 (setq org-ellipsis " ▾"
             org-hide-emphasis-markers t)
+
+
 (add-hook 'org-mode-hook (lambda ()
+
+
+
                           (display-line-numbers-mode 0)
-                          (org-bullets-mode 1)
+                          (org-modern-mode 1)
+                          (org-modern-indent-mode 90)
 
                           (visual-line-mode 1)
                           (setq visual-fill-column-width 100
                                 visual-fill-column-center-text t)
                           (visual-fill-column-mode 1)
 
+                          (set-face-attribute 'org-modern-symbol nil :inherit 'fixed-pitch)
+
                           (variable-pitch-mode 1)
 
-                          ;; TODO: Make nicer
+                          ;;;; TODO: Do a mapping or something.
                           (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
                           (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-block-end-line nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-block-begin-line nil :inherit 'fixed-pitch)
                           (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-                          (set-face-attribute 'org-block-background nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
                           ))
+
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
