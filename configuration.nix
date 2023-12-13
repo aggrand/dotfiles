@@ -242,6 +242,8 @@
       fastfetch
 
       rofi-power-menu
+      anki
+      spotify
     ];
 
     home.username = "user0";

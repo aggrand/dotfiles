@@ -580,6 +580,7 @@ npm install -g typescript-language-server typescript
     ;;(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
 )
 
+
 ;; TODO: variable pitch breaks indent
 (defun crw/org-mode-setup ()
     (org-indent-mode)

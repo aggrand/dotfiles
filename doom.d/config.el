@@ -223,3 +223,18 @@
 ;;
 ;;;; TODO Keybind meta structure editing to be constistent
 ;;;; want: meta-j/k to always move the line, and meta-S-j/k to always move subtree
+
+(global-visual-line-mode 1)
+
+;; --------------------------- Org Config ----------------------------------------
+
+(setq org-ellipsis " ▾"
+            org-hide-emphasis-markers t)
+(add-hook 'org-mode-hook (lambda ()
+                          (display-line-numbers-mode 0)
+                          (org-bullets-mode 1)
+
+                          (setq visual-fill-column-width 100
+                                visual-fill-column-center-text t)
+                          (visual-fill-column-mode 1)
+                          ))

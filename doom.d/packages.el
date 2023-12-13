@@ -51,3 +51,6 @@
 
 (package! catppuccin-theme)
 ;;(package! exwm)
+
+(package! org-bullets)
+(package! visual-fill-column)
