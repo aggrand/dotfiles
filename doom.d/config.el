@@ -29,6 +29,7 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 (setq doom-font (font-spec :family "Iosevka" :size 20 :weight 'semi-light))
+(setq doom-variable-pitch-font (font-spec :family "ETBembo" :size 20 :weight 'semi-light))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -234,7 +235,10 @@
                           (display-line-numbers-mode 0)
                           (org-bullets-mode 1)
 
+                          (visual-line-mode 1)
                           (setq visual-fill-column-width 100
                                 visual-fill-column-center-text t)
                           (visual-fill-column-mode 1)
+
+                          (variable-pitch-mode 1)
                           ))

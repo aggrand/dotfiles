@@ -88,6 +88,7 @@
   fonts.packages = with pkgs; [
     font-awesome
     nerdfonts
+    etBook
   ];
 
   programs.hyprland = {
