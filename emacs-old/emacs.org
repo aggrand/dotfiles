@@ -38,6 +38,7 @@
 #+end_src
 
 * Pathing
+
 #+begin_src emacs-lisp
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
@@ -60,7 +61,9 @@ apps are not started from a shell."
 #+end_src
 
 * UI Configuration
+here
 ** Keys Setup
+here
 
 #+begin_src emacs-lisp
 
@@ -81,6 +84,7 @@ apps are not started from a shell."
 #+end_src
 
 ** Basics
+doing stuff here
 
 #+begin_src emacs-lisp
 

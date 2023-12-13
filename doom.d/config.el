@@ -241,4 +241,10 @@
                           (visual-fill-column-mode 1)
 
                           (variable-pitch-mode 1)
+
+                          ;; TODO: Make nicer
+                          (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+                          (set-face-attribute 'org-block-background nil :inherit 'fixed-pitch)
                           ))
