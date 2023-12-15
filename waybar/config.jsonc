@@ -34,14 +34,10 @@
     "hyprland/workspaces": {
         "format": "{icon}:  {windows}   |",
         "format-window-separator": "  ",
-        //"window-rewrite-default": "",
+        "window-rewrite-default": "",
         "window-rewrite": {
             "firefox": "",
-            "chrome": "S",
-            "Spotify": "S",
-            "spotify": "S",
-            "Chrome_WidgetWin_0": "S",
-            "SpotifyMainWindow": "S",
+            "title<Spotify>" : "󰝚",
             "foot": "",
             "kitty": "",
             "emacs": "",

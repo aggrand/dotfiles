@@ -260,3 +260,78 @@
                           ))
 
 (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+
+(after! org
+  (setq org-capture-templates
+            `(("i" "Inbox" entry (file "inbox.org")
+               , (concat "* INBOX %?\n"
+                         "/Entered on/ %U"))))
+
+      ;; Consider adding a project here
+      (setq org-todo-keywords '((sequence "INBOX(i)" "TODO(t)" "MAYBE(m)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(x)")))
+
+      ;; Don't show archived stuff in the agenda.
+      ;; (setq org-agenda-tag-filter-preset '("-archive", "-someday"))
+
+      (setq org-agenda-start-with-log-mode t)
+      (setq org-log-done 'time)
+      (setq org-log-redeadline 'time)
+      (setq org-log-reschedule 'time)
+      (setq org-log-into-drawer t)
+
+      (setq org-enforce-todo-checkbox-dependencies t)
+      (setq org-archive-location "archive.org")
+      (setq org-archive-tag "archive")
+
+      ;;(setq org-agenda-custom-commands
+      ;;    '(("w" "Work-related tasks" tags-todo "@work"
+      ;;       ((org-agenda-overriding-header "Work")))
+      ;;      ("h" "Personal tasks" tags-todo "@home-chore"
+      ;;       ((org-agenda-overriding-header "Home")))
+      ;;      ("c" "Recurring chores" tags-todo "chore"
+      ;;       ((org-agenda-overriding-header "Chore")))
+      ;;      ))
+
+      ;; Not really necessary, can just filter in the main view
+      ;;(setq org-agenda-custom-commands
+      ;;    '(("i" "Inbox" tags-todo "+TODO=\"INBOX\""
+      ;;       ((org-agenda-overriding-header "Unprocessed Inbox Items")))
+      ;;      ("t" "Todo" tags-todo "+TODO=\"TODO\""
+      ;;       ((org-agenda-overriding-header "Actionable Todo Items")))
+      ;;      ("o" "Someday" tags-todo "+TODO=\"SOMEDAY\""
+      ;;       ((org-agenda-overriding-header "Someday / Maybe Items")))
+      ;;      ("w" "Waiting" tags-todo "+TODO=\"WAITING\""
+      ;;       ((org-agenda-overriding-header "Items Waiting for an External Dependency")))
+      ;;      ("c" "Recurring chores" tags-todo "chore"
+      ;;       ((org-agenda-overriding-header "Chore")))
+      ;;      ))
+
+      (setq org-agenda-custom-commands
+      '(("d" "Daily Review"
+         ((agenda "" ((org-agenda-span 1))); review upcoming deadlines and appointments
+                                           ; type "l" in the agenda to review logged items
+          ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
+          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!)")))
+          (todo "WAITING" ((org-agenda-overriding-header "Step 2: Review waiting items. Decide whether to continue waiting or take some action.")))
+          (todo "TODO" ((org-agenda-overriding-header "Step 3: Review actionable items and select some as next actions for today by giving them priority A.")))
+        ))
+        ("w" "Weekly Review"
+         ((agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
+                                           ; type "l" in the agenda to review logged items
+          ;;(stuck "") ; review stuck projects as designated by org-stuck-projects
+          ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
+          (todo "WAITING") ; review waiting items
+          (todo "MAYBE"))) ; review someday/maybe items
+         ;; ...other commands here
+        ))
+
+      (setq org-tag-alist
+        '((:startgroup)
+           ; Put mutually exclusive tags here
+           (:endgroup)
+           ("project" . ?p)
+           ("archive" . ?a)
+           ("someday" . ?s)
+           ("@errand" . ?e)
+           ("@home" . ?h)
+           ("@school" . ?w))))
