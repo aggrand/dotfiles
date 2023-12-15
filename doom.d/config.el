@@ -312,20 +312,20 @@
 
       (setq org-agenda-custom-commands
       '(("d" "Daily Review"
-         ((agenda "" ((org-agenda-span 3))); review upcoming deadlines and appointments
+         ((agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Step 0: Review upcoming deadlines and appointments."))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
-          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!)")))
+          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!) If doable in 2 min or less, just do it. Otherwise assign to a todo, a waiting element, a someday/maybe, a note, or just delete.")))
           (todo "WAITING" ((org-agenda-overriding-header "Step 2: Review waiting items. Decide whether to continue waiting or take some action.")))
-          (todo "TODO" ((org-agenda-overriding-header "Step 3: Review actionable items and select some as next actions for today by giving them priority A.")))
+          (todo "TODO" ((org-agenda-overriding-header "Step 3: Review actionable items and select some as next actions for today by giving them priority A. Remove any that seem irrelevant.")))
         ))
         ("w" "Weekly Review"
          ((agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           ;;(stuck "") ; review stuck projects as designated by org-stuck-projects
           ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
-          (todo "WAITING") ; review waiting items
-          (todo "MAYBE"))) ; review someday/maybe items
+          (todo "MAYBE" ((org-agenda-overriding-header "Step 1: Review someday / maybe items. Convert to action items or projects as necessary.")))
+          )) ; review someday/maybe items
          ;; ...other commands here
         ))
 
