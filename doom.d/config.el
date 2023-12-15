@@ -283,6 +283,10 @@
       (setq org-archive-location "archive.org")
       (setq org-archive-tag "archive")
 
+      (setq org-agenda-start-day "-1d")
+      (setq org-agenda-span 'week)
+      (setq org-agenda-start-on-weekday nil)
+
       ;;(setq org-agenda-custom-commands
       ;;    '(("w" "Work-related tasks" tags-todo "@work"
       ;;       ((org-agenda-overriding-header "Work")))
@@ -308,7 +312,7 @@
 
       (setq org-agenda-custom-commands
       '(("d" "Daily Review"
-         ((agenda "" ((org-agenda-span 1))); review upcoming deadlines and appointments
+         ((agenda "" ((org-agenda-span 3))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
           (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!)")))
