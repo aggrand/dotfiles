@@ -344,6 +344,12 @@
       target = ".config/wpaperd";
     };
 
+    home.file.maestral = {
+      enable = true;
+      source = ./maestral;
+      target = ".config/maestral";
+    };
+
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
