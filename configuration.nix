@@ -129,6 +129,18 @@
     TTYVTDisallocate = true;
   };
 
+  systemd.user.services.maestral = {
+    description = "Maestral";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "notify";
+      NotifyAccess = "exec";
+      ExecStart = "/run/current-system/sw/bin/maestral start -f";
+      ExecStop = "/run/current-system/sw/bin/maestral stop";
+      WatchdogSec = "30s";
+    };
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -181,6 +193,7 @@
     greetd.tuigreet
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
+    maestral
   ];
 
   programs.steam = {

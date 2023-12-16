@@ -263,12 +263,13 @@
 
 (after! org
   (setq org-capture-templates
-            `(("i" "Inbox" entry (file "inbox.org")
+            `(("i" "Inbox" entry (file "tasks.org")
                , (concat "* INBOX %?\n"
                          "/Entered on/ %U"))))
 
       ;; Consider adding a project here
-      (setq org-todo-keywords '((sequence "INBOX(i)" "TODO(t)" "MAYBE(m)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(x)")))
+      ;; TODO Should never really be used
+      (setq org-todo-keywords '((sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "PROJECT(p)" "MAYBE(m)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(x)")))
 
       ;; Don't show archived stuff in the agenda.
       ;; (setq org-agenda-tag-filter-preset '("-archive", "-someday"))
@@ -286,6 +287,8 @@
       (setq org-agenda-start-day "-1d")
       (setq org-agenda-span 'week)
       (setq org-agenda-start-on-weekday nil)
+      (setq org-agenda-todo-ignore-scheduled 'future)
+      (setq org-agenda-tags-todo-honor-ignore-options t)
 
       ;;(setq org-agenda-custom-commands
       ;;    '(("w" "Work-related tasks" tags-todo "@work"
@@ -314,17 +317,21 @@
       '(("d" "Daily Review"
          ((agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Step 0: Review upcoming deadlines and appointments."))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
-          ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
-          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!) If doable in 2 min or less, just do it. Otherwise assign to a todo, a waiting element, a someday/maybe, a note, or just delete.")))
-          (todo "WAITING" ((org-agenda-overriding-header "Step 2: Review waiting items. Decide whether to continue waiting or take some action.")))
-          (todo "TODO" ((org-agenda-overriding-header "Step 3: Review actionable items and select some as next actions for today by giving them priority A. Remove any that seem irrelevant.")))
+          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
+          (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects.")))
+          (todo "WAITING" ((org-agenda-overriding-header "Step 3: Review waiting items. Decide whether to continue waiting or take some action.")))
+          (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review actionable items and select some as next actions for today by giving them priority A. Remove any that seem irrelevant.")))
         ))
         ("w" "Weekly Review"
-         ((agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
+         ((agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Step 0: Review upcoming deadlines and appointments. Revisit at end."))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           ;;(stuck "") ; review stuck projects as designated by org-stuck-projects
           ;;(todo "PROJECT") ; review all projects (assuming you use todo keywords to designate projects)
-          (todo "MAYBE" ((org-agenda-overriding-header "Step 1: Review someday / maybe items. Convert to action items or projects as necessary.")))
+          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!) If doable in 2 min or less, just do it. Otherwise assign to a todo, a waiting element, a someday/maybe, a note, or just delete.")))
+          (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects.")))
+          (todo "WAITING" ((org-agenda-overriding-header "Step 3: Review waiting items. Decide whether to continue waiting or take some action.")))
+          (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review action items and larger projects. Make sure they're still on-track and actionable.")))
+          (todo "MAYBE" ((org-agenda-overriding-header "Step 5: Review someday / maybe items. Convert to action items or projects as necessary.")))
           )) ; review someday/maybe items
          ;; ...other commands here
         ))
