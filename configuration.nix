@@ -129,6 +129,8 @@
     TTYVTDisallocate = true;
   };
 
+  services.gnome3.gnome-keyring.enable = true;
+
   systemd.user.services.maestral = {
     description = "Maestral";
     wantedBy = [ "default.target" ];
@@ -258,6 +260,9 @@
       rofi-power-menu
       anki
       spotify
+
+      gnome.seahorse
+      discord
     ];
 
     home.username = "user0";
@@ -342,12 +347,6 @@
       enable = true;
       source = ./wpaperd;
       target = ".config/wpaperd";
-    };
-
-    home.file.maestral = {
-      enable = true;
-      source = ./maestral;
-      target = ".config/maestral";
     };
 
     programs.rofi = {

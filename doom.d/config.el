@@ -280,7 +280,6 @@
       (setq org-log-reschedule 'time)
       (setq org-log-into-drawer t)
 
-      (setq org-enforce-todo-checkbox-dependencies t)
       (setq org-archive-location "archive.org")
       (setq org-archive-tag "archive")
 
@@ -317,7 +316,7 @@
       '(("d" "Daily Review"
          ((agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Step 0: Review upcoming deadlines and appointments."))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
-          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
+          (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too! And mobile!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
           (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects.")))
           (todo "WAITING" ((org-agenda-overriding-header "Step 3: Review waiting items. Decide whether to continue waiting or take some action.")))
           (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review actionable items and select some as next actions for today by giving them priority A. Remove any that seem irrelevant.")))
