@@ -36,11 +36,9 @@
         "format-window-separator": "  ",
         "window-rewrite-default": "",
         "window-rewrite": {
-            "firefox": "",
             "title<Spotify>" : "󰝚",
             "foot": "",
             "kitty": "",
-            "emacs": "",
             "discord": "󰙯",
             "thunderbird": "",
             "tor": "",
@@ -48,7 +46,9 @@
             "steam": "󰓓",
             "signal": "󰍡",
             "anki": "",
-            "pavucontrol": ""
+            "pavucontrol": "",
+            "emacs": "",
+            "firefox": "",
         },
     },
     "tray": {

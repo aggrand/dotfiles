@@ -93,7 +93,7 @@
 
   programs.hyprland = {
     enable = true;
-    nvidiaPatches = true;
+    # nvidiaPatches = true;
     xwayland.enable = true;
   };
   environment.sessionVariables = {
@@ -245,7 +245,7 @@
 
       mpv
       steam
-      anki
+      anki-bin
 
       ansible
       yamllint
@@ -258,11 +258,12 @@
       fastfetch
 
       rofi-power-menu
-      anki
       spotify
 
       gnome.seahorse
       discord
+      texliveFull
+      sioyek
     ];
 
     home.username = "user0";
@@ -319,11 +320,6 @@
     home.file.".doom.d" = {
       enable = true;
       source = ./doom.d;
-    };
-    services.emacs = {
-      enable = true;
-      client.enable = true;
-      defaultEditor = true;
     };
     home.file.hypr = {
       enable = true;
