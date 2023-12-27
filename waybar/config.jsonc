@@ -36,7 +36,6 @@
         "format-window-separator": "  ",
         "window-rewrite-default": "",
         "window-rewrite": {
-            "title<Spotify>" : "󰝚",
             "foot": "",
             "kitty": "",
             "discord": "󰙯",
@@ -49,6 +48,7 @@
             "pavucontrol": "",
             "emacs": "",
             "firefox": "",
+            "title<Spotify>" : "󰝚",
         },
     },
     "tray": {
