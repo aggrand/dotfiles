@@ -323,7 +323,7 @@
 
       (setq org-agenda-custom-commands
       '(("n" "Next Actions"
-         ((tags-todo "+TODO=\"NEXT\"-habit" ((org-agenda-overriding-header "Next Actions") (org-agenda-sorting-strategy '(priority-down effort-down))))
+         ((todo "NEXT" ((org-agenda-overriding-header "Next Actions")))
           (agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Upcoming Deadlines and Appointments") )); review upcoming deadlines and appointments
           )
          ((org-agenda-tag-filter-preset '("-habit")))
@@ -340,7 +340,7 @@
           (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too! And mobile!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
           (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects.")))
           (todo "WAITING" ((org-agenda-overriding-header "Step 3: Review waiting items. Decide whether to continue waiting or take some action.")))
-          (tags-todo "+TODO=\"NEXT\"-habit" ((org-agenda-overriding-header "Step 4: Review actionable items and select some as next actions for today by giving them priority B. Super important ones are priority A. Remove any that seem irrelevant.") (org-agenda-sorting-strategy '(priority-down effort-down))))
+          (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review actionable items and select some as next actions for today by giving them priority B. Super important ones are priority A. Remove any that seem irrelevant.")))
 
           (todo "MAYBE" ((org-agenda-overriding-header "Step 5: Review someday / maybe items. Convert to action items or projects as necessary.")))
         )
