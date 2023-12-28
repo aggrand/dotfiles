@@ -283,6 +283,7 @@
       ;; Don't show archived stuff in the agenda.
       ;; (setq org-agenda-tag-filter-preset '("-archive", "-someday"))
 
+      (setq org-agenda-log-mode-items '(clock))
       (setq org-agenda-start-with-log-mode t)
       (setq org-log-done 'time)
       (setq org-log-redeadline 'time)
