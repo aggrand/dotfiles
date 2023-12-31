@@ -237,7 +237,11 @@
       gnumake
       libtool
       nixfmt
+      shellcheck
+
       python3
+      poetry
+      beancount
       #isort
       #pipenv
       #python311Packages.nose
