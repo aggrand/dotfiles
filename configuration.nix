@@ -102,6 +102,9 @@
   hardware = {
     opengl.enable = true;
     nvidia.modesetting.enable = true;
+    bluetooth.enable = true; # enables support for Bluetooth
+    bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
   };
   xdg.portal = {
     enable = true;
@@ -196,6 +199,12 @@
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
     maestral
+    grimblast
+    chromium
+    qbittorrent-qt5
+    wlsunset
+    libgcc
+    stdenv
   ];
 
   programs.steam = {
@@ -240,6 +249,7 @@
       shellcheck
 
       python3
+      #python311Packages.spacy
       poetry
       beancount
       #isort
@@ -249,7 +259,11 @@
 
       mpv
       steam
+      prismlauncher
       anki-bin
+      zulu17
+      ngrok
+      zotero
 
       ansible
       yamllint

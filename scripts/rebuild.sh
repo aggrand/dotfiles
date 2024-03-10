@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
+shellcheck ./scripts/*
+
 sudo nixos-rebuild switch --flake .#nixos
 
 # TODO: Use the nix doom repo. I had trouble with it before.

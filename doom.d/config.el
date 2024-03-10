@@ -44,6 +44,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+(setq org-roam-directory "~/org/roam")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -293,6 +294,7 @@
       (setq org-archive-location "archive.org")
       (setq org-archive-tag "archive")
 
+      (setq org-deadline-warning-days 0)
       (setq org-agenda-start-day "-1d")
       (setq org-agenda-span 'week)
       (setq org-agenda-start-on-weekday nil)
