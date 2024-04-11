@@ -257,7 +257,7 @@
                           (set-face-attribute 'org-block-end-line nil :inherit 'fixed-pitch)
                           (set-face-attribute 'org-block-begin-line nil :inherit 'fixed-pitch)
                           (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-                          (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
+                          ;; (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
                           ))
 
 (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)

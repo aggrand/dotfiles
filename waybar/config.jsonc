@@ -112,7 +112,8 @@
     },
     "clock": {
         "tooltip": true,
-        "tooltip-format": "{:   %A, %B %e %Y}"
+        "tooltip-format": "{:   %A, %B %e %Y}",
+        "timezone": "America/Argentina/Buenos_Aires"
     },
 
 
