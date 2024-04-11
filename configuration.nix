@@ -248,7 +248,11 @@
       nixfmt
       shellcheck
 
-      python3
+      (python3.withPackages (p: with p; [
+        spacy
+        spacy_models.en_core_web_sm
+        pillow
+      ]))
       #python311Packages.spacy
       poetry
       beancount
@@ -264,6 +268,7 @@
       zulu17
       ngrok
       zotero
+      gammastep
 
       ansible
       yamllint
