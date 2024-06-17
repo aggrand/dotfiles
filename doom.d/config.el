@@ -332,9 +332,14 @@
       (setq org-agenda-custom-commands
       '(("n" "Next Actions"
          ((todo "NEXT" ((org-agenda-overriding-header "Next Actions") (org-agenda-dim-blocked-tasks 'invisible)))
-          (agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Upcoming Deadlines and Appointments") )); review upcoming deadlines and appointments
+          (agenda "" ((org-agenda-span 3)
+                      (org-agenda-overriding-header "Upcoming Deadlines and Appointments")
+                      (org-agenda-entry-types '(:deadline :timestamp))
+                      )); review upcoming deadlines and appointments
           )
-         ((org-agenda-tag-filter-preset '("-habit")))
+         ((org-agenda-tag-filter-preset '("-habit"))
+          (org-agenda-start-day "-0d")
+          )
          )
 
        ("h" "Next Habits"
@@ -342,7 +347,7 @@
           ))
 
         ("r" "Review of Everything"
-         ((agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Upcoming Deadlines and Appointments."))); review upcoming deadlines and appointments
+         ((agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Everything upcoming."))); review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           (todo "TODO" ((org-agenda-overriding-header "Step 0: Backstop: Capture any accidental TODO items.")))
           (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too! And mobile-inbox.org!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
