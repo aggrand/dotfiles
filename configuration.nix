@@ -199,6 +199,7 @@
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
     maestral
+    maestral-gui
     grimblast
     chromium
     qbittorrent-qt5

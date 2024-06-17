@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
+waybar &
 
 # initializing wallpaper daemon
 wpaperd &
 
-waybar &
+sleep 5
+
+maestral_qt &
 
 dunst
