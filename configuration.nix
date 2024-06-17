@@ -132,7 +132,7 @@
     TTYVTDisallocate = true;
   };
 
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   systemd.user.services.maestral = {
     description = "Maestral";

@@ -301,6 +301,11 @@
       (setq org-agenda-todo-ignore-scheduled 'future)
       (setq org-agenda-tags-todo-honor-ignore-options t)
 
+      ;; Use 4 am as the day start
+      (setq org-extend-today-until 4
+            org-use-effective-time t)
+
+
       ;;(setq org-agenda-custom-commands
       ;;    '(("w" "Work-related tasks" tags-todo "@work"
       ;;       ((org-agenda-overriding-header "Work")))
@@ -326,7 +331,7 @@
 
       (setq org-agenda-custom-commands
       '(("n" "Next Actions"
-         ((todo "NEXT" ((org-agenda-overriding-header "Next Actions")))
+         ((todo "NEXT" ((org-agenda-overriding-header "Next Actions") (org-agenda-dim-blocked-tasks 'invisible)))
           (agenda "" ((org-agenda-span 3) (org-agenda-overriding-header "Upcoming Deadlines and Appointments") )); review upcoming deadlines and appointments
           )
          ((org-agenda-tag-filter-preset '("-habit")))
