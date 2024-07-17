@@ -260,6 +260,10 @@
                           ;; (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
                           ))
 
+(map! :leader
+      :desc "Search nodes by content"
+      "n r c" (lambda () (interactive)(consult-ripgrep "~/org/roam")))
+
 (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
 
 (after! org
@@ -332,7 +336,7 @@
       (setq org-agenda-custom-commands
       '(("n" "Next Actions"
          ((todo "NEXT" ((org-agenda-overriding-header "Next Actions") (org-agenda-dim-blocked-tasks 'invisible)))
-          (agenda "" ((org-agenda-span 3)
+          (agenda "" ((org-agenda-span 7)
                       (org-agenda-overriding-header "Upcoming Deadlines and Appointments")
                       (org-agenda-entry-types '(:deadline :timestamp))
                       )); review upcoming deadlines and appointments
@@ -365,6 +369,13 @@
         '((:startgroup)
            ; Put mutually exclusive tags here
            (:endgroup)
+           ; Roam tags
+           ("bibliographic" . ?b)
+           ("revisit" . ?r)
+           ("index" . ?i)
+
+           ; GTD tags
+           ("food" . ?f)
            ("habit" . ?h)
            ("@errand" . ?e)
            ("@home" . ?o)

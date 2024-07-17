@@ -288,6 +288,8 @@
       discord
       texliveFull
       sioyek
+
+      stremio
     ];
 
     home.username = "user0";
