@@ -236,11 +236,10 @@
 
 (add-hook 'org-mode-hook (lambda ()
 
-
-
                           (display-line-numbers-mode 0)
                           (org-modern-mode 1)
                           (org-modern-indent-mode 90)
+                          (org-fragtog-mode)
 
                           (visual-line-mode 1)
                           (setq visual-fill-column-width 100

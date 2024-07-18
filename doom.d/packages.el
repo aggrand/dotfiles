@@ -55,5 +55,6 @@
 ;; (package! org-bullets)
 (package! visual-fill-column)
 (package! org-modern)
+(package! org-fragtog)
 (package! org-modern-indent
   :recipe (:host github :repo "jdtsmith/org-modern-indent"))
