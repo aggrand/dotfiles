@@ -152,7 +152,6 @@
   security.polkit.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -203,9 +202,9 @@
     grimblast
     chromium
     qbittorrent-qt5
-    wlsunset
     libgcc
     stdenv
+    hyprshade
   ];
 
   programs.steam = {
@@ -246,7 +245,7 @@
       cmake
       gnumake
       libtool
-      nixfmt
+      nixfmt-classic
       shellcheck
 
       (python3.withPackages (p: with p; [
@@ -269,7 +268,6 @@
       zulu17
       ngrok
       zotero
-      gammastep
 
       ansible
       yamllint
@@ -284,7 +282,7 @@
       rofi-power-menu
       spotify
 
-      gnome.seahorse
+      seahorse
       discord
       texliveFull
       sioyek
