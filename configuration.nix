@@ -48,6 +48,8 @@
   # Set your time zone.
   time.timeZone = "America/Argentina/Buenos_Aires";
 
+
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -238,6 +240,8 @@
       fd
       clang
 
+      graphviz
+
       # Emacs config-specific stuff
       pandoc
       shellcheck
@@ -248,14 +252,14 @@
       nixfmt-classic
       shellcheck
 
-      (python3.withPackages (p: with p; [
-        spacy
-        spacy_models.en_core_web_sm
-        pillow
-      ]))
+      #(python3.withPackages (p: with p; [
+      #  spacy
+      #  spacy_models.en_core_web_sm
+      #  pillow
+      #]))
       #python311Packages.spacy
-      poetry
-      beancount
+      #poetry
+      #beancount
       #isort
       #pipenv
       #python311Packages.nose
@@ -288,6 +292,7 @@
       sioyek
 
       stremio
+      calibre
     ];
 
     home.username = "user0";

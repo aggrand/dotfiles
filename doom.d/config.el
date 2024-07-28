@@ -263,7 +263,14 @@
       :desc "Search nodes by content"
       "n r c" (lambda () (interactive)(consult-ripgrep "~/org/roam")))
 
+(map! :leader
+      :desc "Open org calendar"
+      "o a c" (lambda () (interactive)(cfw:open-org-calendar)))
+
+
 (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+
+(setq cfw:org-agenda-schedule-args '(:timestamp :deadline))
 
 (after! org
 
@@ -348,6 +355,7 @@
        ("h" "Next Habits"
          ((tags-todo "habit+TODO=\"NEXT\"" ((org-agenda-overriding-header "Next Actions for Habits") (org-agenda-sorting-strategy '(priority-down effort-down))))
           ))
+
 
         ("r" "Review of Everything"
          ((agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Everything upcoming."))); review upcoming deadlines and appointments

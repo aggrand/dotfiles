@@ -58,3 +58,7 @@
 (package! org-fragtog)
 (package! org-modern-indent
   :recipe (:host github :repo "jdtsmith/org-modern-indent"))
+(package! org-habit-stats)
+
+(unpin! org-roam)
+(package! org-roam-ui)

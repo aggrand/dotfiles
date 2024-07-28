@@ -3,7 +3,7 @@ set -eoux pipefail
 
 shellcheck ./scripts/*
 
-sudo nixos-rebuild switch --flake .#nixos
+sudo nixos-rebuild switch --flake .#nixos --show-trace
 
 # TODO: Use the nix doom repo. I had trouble with it before.
 # Remember to install nerd fonts inside emacs
