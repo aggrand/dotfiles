@@ -500,6 +500,21 @@
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
 
+        (setq org-roam-capture-templates
+            `(("d" "default" plain "%?"
+               :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
+               :unnarrowed t)
+
+              ("b" "bibliographic" plain (file "templates/bibliographic.org")
+                :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: :bibliographic:\n#+date: %U\n")
+                :unnarrowed t)
+
+                ("l" "linked-bibliographic" plain (file "templates/linked-bibliographic.org")
+                :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ":PROPERTIES:\n:ROAM_REFS: ${link}\n:END:\n#+title: ${title}\n#+filetags: :bibliographic:\n#+date: %U\n")
+                :unnarrowed t)
+
+              ))
+
 
         )
 
