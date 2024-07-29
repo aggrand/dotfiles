@@ -442,7 +442,25 @@
         (string-prefix-p
                 (expand-file-name (file-name-as-directory org-roam-directory))
                 (file-name-directory buffer-file-name))))
-       
+
+        (defun vulpea-project-files ()
+        (seq-uniq
+        (seq-map
+        #'car
+        (org-roam-db-query
+        [:select [nodes:file]
+        :from tags
+        :left-join nodes
+        :on (= tags:node-id nodes:id)
+        :where (like tag (quote "%\"has-todos\"%"))]))))
+
+        (defun vulpea-agenda-files-update (&rest _)
+        "Update the value of `org-agenda-files'."
+        (setq org-agenda-files (vulpea-project-files)))
+
+        (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
+        (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
+
         )
 
 (use-package! org-roam-ui
