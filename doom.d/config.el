@@ -43,8 +43,13 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-(setq org-roam-directory "~/org/roam")
+(setq org-directory "~/dropbox/org/")
+(setq org-roam-directory "~/dropbox/org/roam")
+
+;; TODO: There might be a way to not need vulpea?
+(use-package! vulpea
+  :demand t
+  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -259,9 +264,9 @@
                           ;; (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
                           ))
 
-(map! :leader
-      :desc "Search nodes by content"
-      "n r c" (lambda () (interactive)(consult-ripgrep "~/org/roam")))
+;;(map! :leader
+;;      :desc "Search nodes by content"
+;;      "n r c" (lambda () (interactive)(consult-ripgrep "~/dropbox/org/roam")))
 
 (map! :leader
       :desc "Open org calendar"
@@ -280,9 +285,9 @@
             `(("i" "Inbox" entry (file "tasks.org")
                , (concat "* INBOX %?\n"
                          "/Entered on/ %U"))
-              ("d" "Dream Journal" entry (file+datetree "~/org/dream-journal.org")
+              ("d" "Dream Journal" entry (file+datetree "~/dropbox/org/dream-journal.org")
                "* %?\nEntered on %U\n")
-              ("j" "Daily Journal" entry (file+datetree "~/org/journal.org")
+              ("j" "Daily Journal" entry (file+datetree "~/dropbox/org/journal.org")
                "* %?\nEntered on %U\n")
               ))
 
@@ -379,6 +384,7 @@
            ; Roam tags
            ("bibliographic" . ?b)
            ("revisit" . ?r)
+           ("has-todos" . ?t)
            ("index" . ?i)
 
            ; GTD tags
@@ -386,7 +392,58 @@
            ("habit" . ?h)
            ("@errand" . ?e)
            ("@home" . ?o)
-           ("@school" . ?s))))
+           ("@school" . ?s)))
+
+        ;; Get todos from roam
+        ;; https://systemcrafters.net/build-a-second-brain-in-emacs/5-org-roam-hacks/
+        ;;
+        (add-to-list 'org-tags-exclude-from-inheritance "has-todos")
+
+        (defun vulpea-project-p ()
+        "Return non-nil if current buffer has any todo entry.
+
+        TODO entries marked as done are ignored, meaning the this
+        function returns nil if current buffer contains only completed
+        tasks."
+        (org-element-map                          ; (2)
+        (org-element-parse-buffer 'headline) ; (1)
+        'headline
+        (lambda (h)
+        (eq (org-element-property :todo-type h)
+                'todo))
+        nil 'first-match))                     ; (3)
+
+        (add-hook 'find-file-hook #'vulpea-project-update-tag)
+        (add-hook 'before-save-hook #'vulpea-project-update-tag)
+
+        (defun vulpea-project-update-tag ()
+        "Update PROJECT tag in the current buffer."
+        (when (and (not (active-minibuffer-window))
+                        (vulpea-buffer-p))
+                (save-excursion
+                (goto-char (point-min))
+                (let* ((tags (vulpea-buffer-tags-get))
+                        (original-tags tags))
+                (if (vulpea-project-p)
+                        (setq tags (cons "has-todos" tags))
+                (setq tags (remove "has-todos" tags)))
+
+                ;; cleanup duplicates
+                (setq tags (seq-uniq tags))
+
+                ;; update tags if changed
+                (when (or (seq-difference tags original-tags)
+                        (seq-difference original-tags tags))
+                (apply #'vulpea-buffer-tags-set tags))))))
+
+        (defun vulpea-buffer-p ()
+        "Return non-nil if the currently visited buffer is a note."
+        (and buffer-file-name
+        (string-prefix-p
+                (expand-file-name (file-name-as-directory org-roam-directory))
+                (file-name-directory buffer-file-name))))
+       
+        )
 
 (use-package! org-roam-ui
     :after org-roam ;; or :after org
@@ -398,3 +455,4 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+
