@@ -43,17 +43,13 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/dropbox/org/")
+(setq org-directory "~/org/")
 (setq org-roam-directory (format "%s/roam" org-directory))
 
 ;; TODO: There might be a way to not need vulpea?
 (use-package! vulpea
   :demand t
   :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
-
-(require 'epa-file)
-(epa-file-enable)
-
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

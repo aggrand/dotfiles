@@ -93,6 +93,8 @@
     etBook
   ];
 
+  programs.gnupg.agent.enable = true;
+
   programs.hyprland = {
     enable = true;
     # nvidiaPatches = true;
@@ -209,6 +211,7 @@
     hyprshade
   ];
 
+
   programs.steam = {
     enable = true;
     #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -282,6 +285,8 @@
       wpaperd
       unzip
       fastfetch
+
+      cryptomator
 
       rofi-power-menu
       spotify
