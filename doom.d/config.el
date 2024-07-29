@@ -277,6 +277,41 @@
 
 (setq cfw:org-agenda-schedule-args '(:timestamp :deadline))
 
+;; The following two parts are from:
+;; https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.html
+(setq org-agenda-prefix-format
+      '((agenda . " %i %(vulpea-agenda-category 12)%?-12t% s")
+        (todo . " %i %(vulpea-agenda-category 12) ")
+        (tags . " %i %(vulpea-agenda-category 12) ")
+        (search . " %i %(vulpea-agenda-category 12) ")))
+
+;;Category is defined by one of the following items:
+
+;;- CATEGORY property
+;;- TITLE keyword
+;;- TITLE property
+;;- filename without directory and extension
+
+;;When LEN is a number, resulting string is padded right with
+;;spaces and then truncated with ... on the right if result is
+;;longer than LEN.
+(defun vulpea-agenda-category (&optional len)
+  (let* ((file-name (when buffer-file-name
+                      (file-name-sans-extension
+                       (file-name-nondirectory buffer-file-name))))
+         (title (vulpea-buffer-prop-get "title"))
+         (category (org-get-category))
+         (result
+          (or (if (and
+                   title
+                   (string-equal category file-name))
+                  title
+                category)
+              "")))
+    (if (numberp len)
+        (s-truncate len (s-pad-right len " " result))
+      result)))
+
 (after! org
 
   (add-to-list 'org-modules 'org-habit)
@@ -456,7 +491,8 @@
 
         (defun vulpea-agenda-files-update (&rest _)
         "Update the value of `org-agenda-files'."
-        (setq org-agenda-files (vulpea-project-files)))
+        (setq org-agenda-files (append (vulpea-project-files)
+                               '("~/dropbox/org/tasks.org" "~/dropbox/org/habits.org"))))
 
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
