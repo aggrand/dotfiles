@@ -44,12 +44,15 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/dropbox/org/")
-(setq org-roam-directory "~/dropbox/org/roam")
+(setq org-roam-directory (format "%s/roam" org-directory))
 
 ;; TODO: There might be a way to not need vulpea?
 (use-package! vulpea
   :demand t
   :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
+
+(require 'epa-file)
+(epa-file-enable)
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -264,9 +267,13 @@
                           ;; (set-face-attribute 'org-modern-bracket-line nil :inherit 'fixed-pitch)
                           ))
 
-;;(map! :leader
-;;      :desc "Search nodes by content"
-;;      "n r c" (lambda () (interactive)(consult-ripgrep "~/dropbox/org/roam")))
+(map! :leader
+      :desc "Search nodes by content"
+      "n r c" (lambda () (interactive)(consult-ripgrep org-roam-directory)))
+
+(map! :leader
+      :desc "Open the org roam ui"
+      "n r u o" (org-roam-ui-open))
 
 (map! :leader
       :desc "Open org calendar"
@@ -280,10 +287,10 @@
 ;; The following two parts are from:
 ;; https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.html
 (setq org-agenda-prefix-format
-      '((agenda . " %i %(vulpea-agenda-category 12)%?-12t% s")
-        (todo . " %i %(vulpea-agenda-category 12) ")
-        (tags . " %i %(vulpea-agenda-category 12) ")
-        (search . " %i %(vulpea-agenda-category 12) ")))
+      '((agenda . " %i %(vulpea-agenda-category 36)%?-12t% s")
+        (todo . " %i %(vulpea-agenda-category 36) ")
+        (tags . " %i %(vulpea-agenda-category 36) ")
+        (search . " %i %(vulpea-agenda-category 36) ")))
 
 ;;Category is defined by one of the following items:
 
@@ -320,9 +327,9 @@
             `(("i" "Inbox" entry (file "tasks.org")
                , (concat "* INBOX %?\n"
                          "/Entered on/ %U"))
-              ("d" "Dream Journal" entry (file+datetree "~/dropbox/org/dream-journal.org")
+              ("d" "Dream Journal" entry (file+datetree (format "%s/dream-journal" org-directory))
                "* %?\nEntered on %U\n")
-              ("j" "Daily Journal" entry (file+datetree "~/dropbox/org/journal.org")
+              ("j" "Daily Journal" entry (file+datetree (format "%s/journal.org" org-directory))
                "* %?\nEntered on %U\n")
               ))
 
@@ -492,10 +499,11 @@
         (defun vulpea-agenda-files-update (&rest _)
         "Update the value of `org-agenda-files'."
         (setq org-agenda-files (append (vulpea-project-files)
-                               '("~/dropbox/org/tasks.org" "~/dropbox/org/habits.org"))))
+                               '("tasks.org"))))
 
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
+
 
         )
 
@@ -509,4 +517,3 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
-
