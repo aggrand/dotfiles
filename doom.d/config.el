@@ -303,17 +303,23 @@
                       (file-name-sans-extension
                        (file-name-nondirectory buffer-file-name))))
          (title (vulpea-buffer-prop-get "title"))
-         (category (org-get-category))
-         (result
-          (or (if (and
-                   title
-                   (string-equal category file-name))
-                  title
-                category)
-              "")))
+
+         ;; TODO Doesn't seem to work
+         ;;(category (org-get-category))
+         ;;(result
+         ;; (or (if (and
+         ;;          title
+         ;;          (string-equal category file-name))
+         ;;         title
+         ;;       category)
+         ;;     ""))
+         )
+         title
     (if (numberp len)
-        (s-truncate len (s-pad-right len " " result))
-      result)))
+        (s-truncate len (s-pad-right len " " title))
+      result)
+
+    ))
 
 (after! org
 
