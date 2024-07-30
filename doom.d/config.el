@@ -325,6 +325,8 @@
 
   ;;(add-to-list 'org-modules 'org-habit)
 
+  (add-to-list 'org-modules 'org-checklist)
+
   (setq org-capture-templates
             `(("i" "Inbox" entry (file "tasks.org")
                , (concat "* INBOX %?\n"
@@ -358,6 +360,7 @@
       (setq org-agenda-span 1)
       (setq org-agenda-start-on-weekday nil)
       (setq org-agenda-todo-ignore-scheduled 'future)
+      (setq org-agenda-todo-ignore-time-comparison-use-seconds t)
       (setq org-agenda-tags-todo-honor-ignore-options t)
       (setq org-agenda-hide-tags-regexp ".*")
 
@@ -402,13 +405,14 @@
                       (org-agenda-entry-types '(:deadline :timestamp))
                       )); review upcoming deadlines and appointments
           )
-         ((org-agenda-tag-filter-preset '("-habit"))
+         (
+          ;; (org-agenda-tag-filter-preset '("-habit"))
           (org-agenda-start-day "-0d")
           )
          )
 
        ("h" "Next Habits"
-         ((tags-todo "habit+TODO=\"NEXT\"" ((org-agenda-overriding-header "Next Actions for Habits") (org-agenda-sorting-strategy '(priority-down effort-down))))
+         ((tags-todo "habit+TODO=\"NEXT\"" ((org-agenda-overriding-header "Next Actions for Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
           ))
 
 
