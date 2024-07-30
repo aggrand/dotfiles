@@ -495,7 +495,7 @@
         (defun vulpea-agenda-files-update (&rest _)
         "Update the value of `org-agenda-files'."
         (setq org-agenda-files (append (vulpea-project-files)
-                               '("tasks.org"))))
+                               '("tasks.org" "events.org"))))
 
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
