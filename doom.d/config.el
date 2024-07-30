@@ -363,6 +363,7 @@
       (setq org-agenda-todo-ignore-time-comparison-use-seconds t)
       (setq org-agenda-tags-todo-honor-ignore-options t)
       (setq org-agenda-hide-tags-regexp ".*")
+      (setq org-agenda-tag-filter-preset '("-habit"))
 
       (defun org-agenda-open-hook ()
         (olivetti-mode))
@@ -406,26 +407,30 @@
                       )); review upcoming deadlines and appointments
           )
          (
-          ;; (org-agenda-tag-filter-preset '("-habit"))
+          (org-agenda-tag-filter-preset '("-habit"))
           (org-agenda-start-day "-0d")
           )
          )
 
        ("h" "Next Habits"
-         ((tags-todo "habit+TODO=\"NEXT\"" ((org-agenda-overriding-header "Next Actions for Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
-          ))
+         ((tags-todo "habit-evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Daytime Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
+         (tags-todo "habit+evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Evening Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
+          )
+         ((org-agenda-tag-filter-preset '("+habit")))
+         )
 
 
         ("r" "Review of Everything"
-         ((agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Everything upcoming."))); review upcoming deadlines and appointments
+         (; review upcoming deadlines and appointments
                                            ; type "l" in the agenda to review logged items
           (todo "TODO" ((org-agenda-overriding-header "Step 0: Backstop: Capture any accidental TODO items.")))
           (todo "INBOX" ((org-agenda-overriding-header "Step 1: Process your inbox. (Don't forget literal mail/email inboxes too! And mobile-inbox.org!) If doable in 2 min or less, just do it. Otherwise assign to a next action, a waiting element, a someday/maybe, a note, or just delete.")))
-          (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects.")))
+          (todo "PROJECT" ((org-agenda-overriding-header "Step 2: Review all projects and goals (which are in roam).")))
           (todo "WAITING" ((org-agenda-overriding-header "Step 3: Review waiting items. Decide whether to continue waiting or take some action.")))
-          (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review actionable items and select some as next actions for today by giving them priority B. Super important ones are priority A. Remove any that seem irrelevant.")))
+          (todo "NEXT" ((org-agenda-overriding-header "Step 4: Review actionable items and set priorities. Postpone any that we can't complete today.")))
+          (agenda "" ((org-agenda-span 7) (org-agenda-overriding-header "Step 5: Take a peek at the week ahead.")))
 
-          (todo "MAYBE" ((org-agenda-overriding-header "Step 5: Review someday / maybe items. Convert to action items or projects as necessary.")))
+          (todo "MAYBE" ((org-agenda-overriding-header "Step 6: Review someday / maybe items. Convert to action items or projects as necessary.")))
         )
          ((org-agenda-tag-filter-preset '("-habit")))
          )
@@ -444,7 +449,7 @@
            ; GTD tags
            ("food" . ?f)
            ("habit" . ?h)
-           ("@errand" . ?e)
+           ("evening" . ?e)
            ("@home" . ?o)
            ("@school" . ?s)))
 

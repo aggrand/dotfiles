@@ -8,4 +8,6 @@ sleep 5
 
 maestral_qt &
 
+cryptomator &
+
 dunst
