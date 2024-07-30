@@ -63,3 +63,4 @@
 (unpin! org-roam)
 (package! org-roam-ui)
 (package! vulpea)
+(package! olivetti)

@@ -283,10 +283,10 @@
 ;; The following two parts are from:
 ;; https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.html
 (setq org-agenda-prefix-format
-      '((agenda . " %i %(vulpea-agenda-category 36)%?-12t% s")
-        (todo . " %i %(vulpea-agenda-category 36) ")
-        (tags . " %i %(vulpea-agenda-category 36) ")
-        (search . " %i %(vulpea-agenda-category 36) ")))
+      '((agenda . " %i %(vulpea-agenda-category 25)%?-12t% s")
+        (todo . " %i %(vulpea-agenda-category 25) ")
+        (tags . " %i %(vulpea-agenda-category 25) ")
+        (search . " %i %(vulpea-agenda-category 25) ")))
 
 ;;Category is defined by one of the following items:
 
@@ -323,7 +323,7 @@
 
 (after! org
 
-  (add-to-list 'org-modules 'org-habit)
+  ;;(add-to-list 'org-modules 'org-habit)
 
   (setq org-capture-templates
             `(("i" "Inbox" entry (file "tasks.org")
@@ -354,11 +354,17 @@
       (setq org-archive-tag "archive")
 
       (setq org-deadline-warning-days 0)
-      (setq org-agenda-start-day "-1d")
-      (setq org-agenda-span 'week)
+      (setq org-agenda-start-day "+0d")
+      (setq org-agenda-span 1)
       (setq org-agenda-start-on-weekday nil)
       (setq org-agenda-todo-ignore-scheduled 'future)
       (setq org-agenda-tags-todo-honor-ignore-options t)
+      (setq org-agenda-hide-tags-regexp ".*")
+
+      (defun org-agenda-open-hook ()
+        (olivetti-mode))
+
+      (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
 
       ;; Use 4 am as the day start
       (setq org-extend-today-until 4
