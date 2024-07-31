@@ -413,8 +413,8 @@
          )
 
        ("h" "Next Habits"
-         ((tags-todo "habit-evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Daytime Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
-         (tags-todo "habit+evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Evening Habits") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
+         ((tags-todo "habit-evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Daytime Habits ☀️") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
+         (tags-todo "habit+evening+TODO=\"NEXT\"" ((org-agenda-overriding-header "Evening Habits 🌙") (org-agenda-sorting-strategy '(priority-down effort-down scheduled-up))))
           )
          ((org-agenda-tag-filter-preset '("+habit")))
          )
