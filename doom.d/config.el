@@ -321,6 +321,8 @@
 
     ))
 
+(require 'org-checklist)
+
 (after! org
 
   ;;(add-to-list 'org-modules 'org-habit)
