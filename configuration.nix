@@ -51,7 +51,7 @@
 
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "es_AR.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_AR.UTF-8";
@@ -209,6 +209,12 @@
     libgcc
     stdenv
     hyprshade
+
+    jq
+
+    yarn
+    nodejs_22
+    nodePackages_latest.gulp
   ];
 
 
@@ -218,7 +224,6 @@
     #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
-
 
 
   # Needed so zsh can complete system packages.
@@ -255,12 +260,12 @@
       nixfmt-classic
       shellcheck
 
-      #(python3.withPackages (p: with p; [
-      #  spacy
-      #  spacy_models.en_core_web_sm
-      #  pillow
-      #]))
-      #python311Packages.spacy
+      (python3.withPackages (p: with p; [
+        spacy
+        spacy_models.en_core_web_sm
+        pillow
+      ]))
+      python311Packages.spacy
       #poetry
       #beancount
       #isort

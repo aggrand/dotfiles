@@ -354,6 +354,8 @@
       (setq org-log-reschedule 'time)
       (setq org-log-into-drawer t)
 
+      (setq org-startup-with-inline-images t)
+
       (setq org-archive-location "archive.org")
       (setq org-archive-tag "archive")
 
@@ -522,6 +524,28 @@
 
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
+
+        (defcustom org-inline-image-background nil
+        "The color used as the default background for inline images.
+        When nil, use the default face background."
+        :group 'org
+        :type '(choice color (const nil)))
+
+        (defun create-image-with-background-color (args)
+        "Specify background color of Org-mode inline image through modify `ARGS'."
+        (let* ((file (car args))
+                (type (cadr args))
+                (data-p (caddr args))
+                (props (cdddr args)))
+        ;; Get this return result style from `create-image'.
+        (append (list file type data-p)
+                (list :background (or org-inline-image-background (face-background 'default)))
+                props)))
+
+        (advice-add 'create-image :filter-args
+                #'create-image-with-background-color)
+
+      (setq org-inline-image-background "white")
 
         (setq org-roam-capture-templates
             `(("d" "default" plain "%?"
