@@ -218,12 +218,12 @@
   ];
 
 
-  programs.steam = {
-    enable = true;
+  #programs.steam = {
+    #enable = true;
     #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+  #};
+  #hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 
 
   # Needed so zsh can complete system packages.
@@ -261,11 +261,11 @@
       shellcheck
 
       (python3.withPackages (p: with p; [
-        spacy
-        spacy_models.en_core_web_sm
-        pillow
+        numpy
+        pandas
+        jupyterlab
       ]))
-      python311Packages.spacy
+      #python311Packages.spacy
       #poetry
       #beancount
       #isort
