@@ -290,6 +290,8 @@
       yamllint
       ansible-lint
 
+      terraform
+
       brightnessctl
       pamixer
       wpaperd
