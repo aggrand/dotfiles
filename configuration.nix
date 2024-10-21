@@ -104,7 +104,7 @@
     NIXOS_OZONE_WL = "1";
   };
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     nvidia.modesetting.enable = true;
     bluetooth.enable = true; # enables support for Bluetooth
     bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -205,7 +205,7 @@
     maestral-gui
     grimblast
     chromium
-    qbittorrent-qt5
+    qbittorrent
     libgcc
     stdenv
     hyprshade
@@ -264,6 +264,11 @@
         numpy
         pandas
         jupyterlab
+        matplotlib
+        seaborn
+        scipy
+        gensim
+        nltk
       ]))
       #python311Packages.spacy
       #poetry
@@ -303,6 +308,9 @@
 
       stremio
       calibre
+
+      minikube
+      hey
     ];
 
     home.username = "user0";
@@ -336,7 +344,7 @@
 
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       plugins = [

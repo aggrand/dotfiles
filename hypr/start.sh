@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+sleep 5
+
 waybar &
 
 # initializing wallpaper daemon
