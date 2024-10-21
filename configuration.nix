@@ -291,6 +291,7 @@
       ansible-lint
 
       terraform
+      awscli2
 
       brightnessctl
       pamixer
