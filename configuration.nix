@@ -307,7 +307,9 @@
       sioyek
 
       stremio
-      calibre
+
+      # Had a build error ¯\_(ツ)_/¯
+      #calibre
 
       minikube
       hey
