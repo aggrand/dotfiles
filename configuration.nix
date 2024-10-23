@@ -316,6 +316,11 @@
 
       minikube
       hey
+
+      pre-commit
+      tflint
+      checkov
+      go
     ];
 
     home.username = "user0";
