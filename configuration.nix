@@ -187,6 +187,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -218,12 +219,12 @@
   ];
 
 
-  #programs.steam = {
-    #enable = true;
-    #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  #};
-  #hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 
 
   # Needed so zsh can complete system packages.
@@ -269,7 +270,10 @@
         scipy
         gensim
         nltk
+        requests
+        pip
       ]))
+      (import ./aif360.nix { inherit pkgs; })
       #python311Packages.spacy
       #poetry
       #beancount
@@ -278,8 +282,9 @@
       #python311Packages.nose
       #python311Packages.pytest
 
+      zoom-us
       mpv
-      steam
+      #steam
       prismlauncher
       anki-bin
       zulu17
@@ -321,6 +326,9 @@
       tflint
       checkov
       go
+      golangci-lint
+
+      gnumake
     ];
 
     home.username = "user0";
