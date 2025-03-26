@@ -83,11 +83,16 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects")))
-;; TODO: Add back #'magit-status conditionally
-;; TODO: Doesn't seem to work in Doom.
-(setq projectile-switch-project-action #'projectile-dired)
+(after! projectile
+        (when (file-directory-p "~/projects")
+        (setq projectile-project-search-path '("~/projects")))
+        (setq projectile-switch-project-action 'projectile-dired)
+        (add-hook 'projectile-after-switch-project-hook
+          (lambda ()
+            (when (magit-toplevel)
+              (magit-status))))
+
+)
 
 ;; ----------------------     EXWM Configs below    -----------------------
 
