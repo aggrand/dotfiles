@@ -19,6 +19,8 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.clipboard = "unnamedplus"
 
- vim.api.nvim_create_autocmd("InsertEnter", { command = [[set norelativenumber]] })
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
+vim.api.nvim_create_autocmd("InsertEnter", { command = [[set norelativenumber]] })
 vim.api.nvim_create_autocmd("InsertLeave", { command = [[set relativenumber]] }) 
