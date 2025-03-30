@@ -25,6 +25,9 @@ export VISUAL="nvim"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
+# Zsh reload
+alias zr="source ~/.zshrc"
+
 # Git commands
 alias gs="git status"
 alias ga="git add"
@@ -32,6 +35,9 @@ alias gaa="git add --all"
 alias gc="git commit"
 alias gp="git push"
 alias gu="git pull"
+alias gl="git log"
+alias glo="git log --oneline"
+alias glol="git log --oneline --graph --decorate"
 
 # Run tfswitch automatically if 'main.tf' file is present
 load-tfswitch() {
