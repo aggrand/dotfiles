@@ -39,6 +39,22 @@ export VISUAL="nvim"
 
 export HISTSIZE=10000
 export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+export HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Set up fzf key bindings and fuzzy completion
+export FZF_TMUX=1
+export FZF_TMUX_OPTS='-p80%,60%'
+source <(fzf --zsh)
 
 # Zsh reload
 alias zr="source ~/.zshrc"
@@ -57,6 +73,8 @@ alias glol="git log --oneline --graph --decorate"
 alias rr="ranger"
 
 alias k="kubectl"
+
+alias ls="ls --color"
 
 # Run tfswitch automatically if 'main.tf' file is present
 load-tfswitch() {
