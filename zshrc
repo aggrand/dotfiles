@@ -56,6 +56,8 @@ alias glol="git log --oneline --graph --decorate"
 
 alias rr="ranger"
 
+alias k="kubectl"
+
 # Run tfswitch automatically if 'main.tf' file is present
 load-tfswitch() {
   local terraform_versionfile_path="main.tf"

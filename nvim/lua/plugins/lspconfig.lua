@@ -10,6 +10,11 @@ return { "neovim/nvim-lspconfig",
 	    },
 	  },
     },
+    keys = {
+        { "<leader>lc",
+            function() return vim.lsp.get_clients()[1].server_capabilities end,
+            desc = "View server capabilities" },
+    },
     config = function()
         require("lspconfig").lua_ls.setup {}
         require("lspconfig").terraform_lsp.setup {
