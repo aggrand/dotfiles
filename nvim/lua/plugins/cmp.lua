@@ -14,6 +14,10 @@ return {
     local luasnip = require("luasnip")
 
     cmp.setup({
+      preselect = cmp.PreselectMode.Item,
+      completion = {
+        completeopt = 'menu,menuone,noinsert',
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -23,7 +27,7 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         ['<C-e>'] = cmp.mapping.abort()
       }),
       sources = cmp.config.sources({
@@ -32,6 +36,9 @@ return {
         { name = "buffer" },
         { name = "path" },
       }),
+      experimental = {
+        ghost_text = true,
+      },
     })
   end,
 }
