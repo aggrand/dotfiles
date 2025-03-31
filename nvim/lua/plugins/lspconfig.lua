@@ -10,15 +10,23 @@ return { "neovim/nvim-lspconfig",
 	    },
 	  },
     },
-    keys = {
-        { "<leader>lc",
-            function() return vim.lsp.get_clients()[1].server_capabilities end,
-            desc = "View server capabilities" },
-    },
     config = function()
         require("lspconfig").lua_ls.setup {}
         require("lspconfig").terraform_lsp.setup {
             cmd = { "terraform-ls", "serve" }
         }
+
+        vim.lsp.get_active_clients()
+        vim.keymap.set("n", "<leader>lc", function()
+            vim.print(vim.lsp.get_clients()[1].capabilities)
+        end, { desc = "Print LSP client capabilities" })
+
+        -- Open diagnostic on hover
+        vim.api.nvim_create_autocmd("CursorHold", {
+          callback = function()
+            vim.diagnostic.open_float(nil, { focus = false })
+          end,
+        })
+
     end
 }

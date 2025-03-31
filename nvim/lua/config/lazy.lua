@@ -28,4 +28,4 @@ require("lazy").setup({
   checker = { enabled = true, frequency = 86400 },
 })
 
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy UI" })
+vim.keymap.set("n", "<leader>a", "<cmd>Lazy<cr>", { desc = "Open Lazy UI" })
