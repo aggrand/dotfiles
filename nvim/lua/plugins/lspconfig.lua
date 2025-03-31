@@ -1,5 +1,4 @@
-return {
-    "neovim/nvim-lspconfig",
+return { "neovim/nvim-lspconfig",
     dependencies = {
 	{
 	    "folke/lazydev.nvim",
@@ -13,5 +12,8 @@ return {
     },
     config = function()
         require("lspconfig").lua_ls.setup {}
+        require("lspconfig").terraform_lsp.setup {
+            cmd = { "terraform-ls", "serve" }
+        }
     end
 }

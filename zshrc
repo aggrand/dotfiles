@@ -17,8 +17,11 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 alias doom="~/.emacs.d/bin/doom"
 
 alias vim=nvim
+alias vi=nvim
 bindkey -v
 export KEYTIMEOUT=1
+
+bindkey -M viins 'jk' vi-jk-escape
 
 # Use editor when we press "v"
 autoload -Uz edit-command-line
@@ -50,6 +53,8 @@ alias gu="git pull"
 alias gl="git log"
 alias glo="git log --oneline"
 alias glol="git log --oneline --graph --decorate"
+
+alias rr="ranger"
 
 # Run tfswitch automatically if 'main.tf' file is present
 load-tfswitch() {
