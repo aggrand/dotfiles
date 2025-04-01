@@ -12,6 +12,7 @@ return { "neovim/nvim-lspconfig",
     },
     config = function()
         require("lspconfig").lua_ls.setup {}
+        require("lspconfig").pylsp.setup {}
         require("lspconfig").terraform_lsp.setup {
             cmd = { "terraform-ls", "serve" }
         }
