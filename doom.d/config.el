@@ -362,7 +362,7 @@
                "* %?\nEntered on %U\n")
               ("j" "Daily Journal" entry (file+datetree (format "%s/journal.org" org-directory))
                "* %?\nEntered on %U\n")
-              ("l" "Local Inbox" entry (file "tasks-local.org")
+              ("o" "Local Inbox" entry (file "tasks-local.org")
                , (concat "* INBOX %?\n"
                          "/Entered on/ %U"))
               ))
