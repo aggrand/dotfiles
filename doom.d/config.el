@@ -548,7 +548,7 @@
         (defun vulpea-agenda-files-update (&rest _)
         "Update the value of `org-agenda-files'."
         (setq org-agenda-files (append (vulpea-project-files)
-                               '("tasks.org" "events.org"))))
+                               '("tasks.org" "tasks-local.org" "events.org"))))
 
         (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
         (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
@@ -575,6 +575,9 @@
 
       (setq org-inline-image-background "white")
 
+      (setq org-roam-list-files-command
+      "fd . -e org --no-ignore -t f --exclude '.git' --exclude '.cache'")
+
         (setq org-roam-capture-templates
             `(("d" "default" plain "%?"
                :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
@@ -596,6 +599,14 @@
 
 
         )
+
+(after! org-roam
+  ;; Override file discovery commands so that gitignored things are included
+  (setq org-roam-list-files-commands
+        '((fd . "fd . -e org -t f --no-ignore")
+          (fdfind . "fdfind . -e org -t f --no-ignore")
+          (rg . "rg --files --no-ignore -g \"*.org\"")
+          (find . "find . -type f -name \"*.org\""))))
 
 ;;(use-package! org-roam-ui
 ;;    :after org-roam ;; or :after org
