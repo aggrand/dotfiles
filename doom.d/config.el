@@ -98,6 +98,22 @@
 
 )
 
+(after! treesit
+  (setq treesit-language-source-alist
+        '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+          (go "https://github.com/tree-sitter/tree-sitter-go")
+          (html "https://github.com/tree-sitter/tree-sitter-html")
+          (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+          (json "https://github.com/tree-sitter/tree-sitter-json")
+          (python "https://github.com/tree-sitter/tree-sitter-python")
+          (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+          (rust "https://github.com/tree-sitter/tree-sitter-rust")
+          (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+
+  )
+
 ;; ----------------------     EXWM Configs below    -----------------------
 
 ;;;; Launches a program that runs without a shell.

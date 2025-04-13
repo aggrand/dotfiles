@@ -78,11 +78,17 @@ source <(fzf --zsh)
 alias zr="source ~/.zshrc"
 
 # Git commands
+# Inspired by here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 alias g="git"
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add --all"
-alias gc="git commit"
+alias gc="git commit --verbose"
+alias gco='git checkout $(tmux popup -d "$PWD" -d "$PWD" -E "git branch | fzf")'
+alias gcob='git checkout -b'
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gf="git fetch"
 alias gp="git push"
 alias gu="git pull"
 alias gl="git log"
