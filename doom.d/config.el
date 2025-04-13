@@ -362,6 +362,9 @@
                "* %?\nEntered on %U\n")
               ("j" "Daily Journal" entry (file+datetree (format "%s/journal.org" org-directory))
                "* %?\nEntered on %U\n")
+              ("l" "Local Inbox" entry (file "tasks-local.org")
+               , (concat "* INBOX %?\n"
+                         "/Entered on/ %U"))
               ))
 
       ;; Consider adding a project here
@@ -583,6 +586,10 @@
 
                 ("l" "linked-bibliographic" plain (file "templates/linked-bibliographic.org")
                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ":PROPERTIES:\n:ROAM_REFS: ${link}\n:END:\n#+title: ${title}\n#+filetags: :bibliographic:\n#+date: %U\n")
+                :unnarrowed t)
+
+                ("o" "local" plain "%?"
+                :if-new (file+head "local/%<%Y%m%d%H%M%S>-${slug}.org" ":PROPERTIES:\n:ROAM_REFS: ${link}\n:END:\n#+title: ${title}\n#+filetags: :local:\n#+date: %U\n")
                 :unnarrowed t)
 
               ))
