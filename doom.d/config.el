@@ -83,11 +83,20 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects")))
-;; TODO: Add back #'magit-status conditionally
-;; TODO: Doesn't seem to work in Doom.
-(setq projectile-switch-project-action #'projectile-dired)
+(after! projectile
+        (when (file-directory-p "~/projects")
+        (setq projectile-project-search-path '("~/projects")))
+        ;;(setq projectile-switch-project-action 'projectile-dired)
+        (setq projectile-switch-project-action (lambda ()
+        (+workspace/new (projectile-project-name)) ;; crea un nuevo workspace con el nombre del proyecto
+        (let ((project-root (projectile-project-root)))
+          (dired project-root))))
+        (add-hook 'projectile-after-switch-project-hook
+          (lambda ()
+            (when (magit-toplevel)
+              (magit-status))))
+
+)
 
 ;; ----------------------     EXWM Configs below    -----------------------
 
@@ -565,13 +574,14 @@
 
         )
 
-(use-package! org-roam-ui
-    :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+;;(use-package! org-roam-ui
+;;    :after org-roam ;; or :after org
+;;;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;;;         a hookable mode anymore, you're advised to pick something yourself
+;;;;         if you don't care about startup time, use
+;;    :config
+;;    (setq org-roam-ui-sync-theme t
+;;          org-roam-ui-follow t
+;;          org-roam-ui-update-on-save t
+;;          org-roam-ui-open-on-start nil
+;;))
