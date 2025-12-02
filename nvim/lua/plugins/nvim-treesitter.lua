@@ -4,7 +4,7 @@ local M = {
         require("nvim-treesitter.install").update({ with_sync = true })()
     end,
 
-    config = function () 
+    config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
