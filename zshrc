@@ -34,8 +34,8 @@ alias doom="~/.emacs.d/bin/doom"
 
 alias vim=nvim
 alias vi=nvim
-bindkey -v
-export KEYTIMEOUT=1
+#bindkey -v
+#export KEYTIMEOUT=1
 
 # TODO: Doesn't work?
 # bindkey -M viins 'jk' vi-jk-escape
@@ -46,8 +46,8 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # Normal backspace
-bindkey "^H" backward-delete-char
-bindkey "^?" backward-delete-char
+#bindkey "^H" backward-delete-char
+#bindkey "^?" backward-delete-char
 
 export PATH="$HOME/bin:$PATH"
 
@@ -66,10 +66,14 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 # Set up fzf key bindings and fuzzy completion
 export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p80%,60%'
+
+#export FZF_TMUX=0
 source <(fzf --zsh)
 
 #TODO: Spruce up some of these aliases? Use the plugins from oh my zsh?
@@ -84,7 +88,7 @@ alias gs="git status"
 alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit --verbose"
-alias gco='git checkout $(tmux popup -d "$PWD" -d "$PWD" -E "git branch | fzf")'
+#alias gco='git checkout $(tmux popup -d "$PWD" -d "$PWD" -E "git branch | fzf")'
 alias gcob='git checkout -b'
 alias gd="git diff"
 alias gdc="git diff --cached"
@@ -119,8 +123,17 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(zoxide init zsh --cmd cd)"
 
+alias envy='~/projects/ops/env-bootstrap/envy.sh'
+
 # Needs to be at end?
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/projects/dotfiles/p10k.zsh.
 [[ ! -f ~/projects/dotfiles/p10k.zsh ]] || source ~/projects/dotfiles/p10k.zsh
+export PATH=/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/raiden/.nvm/versions/node/v22.14.0/bin:/Users/raiden/bin:/Applications/iTerm.app/Contents/Resources/utilities:/Users/raiden/Library/Python/3.13/bin:/Users/raiden/Library/Python/3.13/bin
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+export PATH="/Users/raiden/.local/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"

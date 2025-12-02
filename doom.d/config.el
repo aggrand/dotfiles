@@ -39,7 +39,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -98,6 +98,25 @@
 
 )
 
+(use-package! anki-editor
+  :hook (org-mode . (lambda ()
+                (anki-editor-mode)
+                (add-hook 'after-save-hook #'anki-editor-push-notes nil 'local)))
+  :config
+  (setq anki-editor-org-tags-as-anki-tags nil))
+
+
+;; TODO: Make this work
+(defun my/org-verb-setup ()
+  (verb-mode)
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+  (map! :map org-mode-map
+        :localleader
+        ("v" . (:keymap verb-command-map :which-key "verb"))))
+
+(use-package! verb
+  :hook (org-mode . my/org-verb-setup))
+
 (after! treesit
   (setq treesit-language-source-alist
         '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -142,7 +161,7 @@
 ;;
 ;;;; Emacs server is not required to run EXWM but it has some interesting uses
 ;;;; (see next section).
-;;;; (server-start)
+(server-start)
 ;;
 ;;;; Below are configurations for EXWM.
 ;;
@@ -267,7 +286,7 @@
 
                           (display-line-numbers-mode 0)
                           (org-modern-mode 1)
-                          (org-modern-indent-mode 90)
+                          ;; (org-modern-indent-mode 90)
                           (org-fragtog-mode)
 
                           (visual-line-mode 1)

@@ -64,3 +64,7 @@
 (package! org-roam-ui)
 (package! vulpea)
 (package! olivetti)
+(package! verb)
+
+(package! anki-editor
+  :recipe (:host github :repo "anki-editor/anki-editor"))

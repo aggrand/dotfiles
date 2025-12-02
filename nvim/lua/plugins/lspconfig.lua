@@ -11,11 +11,15 @@ return { "neovim/nvim-lspconfig",
 	  },
     },
     config = function()
-        require("lspconfig").lua_ls.setup {}
-        require("lspconfig").pylsp.setup {}
-        require("lspconfig").terraform_lsp.setup {
+        vim.lsp.enable('lua_ls')
+        vim.lsp.enable('pylsp')
+        vim.lsp.enable('terraform_lsp')
+        vim.lsp.config('terraform_lsp', {
             cmd = { "terraform-ls", "serve" }
-        }
+        })
+        vim.lsp.config('gopls', {
+            cmd = { "gopls", "serve" }
+        })
 
         vim.keymap.set("n", "<leader>lc", function()
             vim.print(vim.lsp.get_clients()[1].capabilities)
@@ -32,7 +36,7 @@ return { "neovim/nvim-lspconfig",
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
         vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "List references" })
+        -- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "List references" })
 
     end
 }
