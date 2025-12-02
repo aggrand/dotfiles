@@ -125,6 +125,15 @@ eval "$(zoxide init zsh --cmd cd)"
 
 alias envy='~/projects/ops/env-bootstrap/envy.sh'
 
+# Yazi wrapper, can use it to "exit" in a dir
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 # Needs to be at end?
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 

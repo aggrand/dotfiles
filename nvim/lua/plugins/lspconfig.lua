@@ -17,6 +17,7 @@ return { "neovim/nvim-lspconfig",
         vim.lsp.config('terraform_lsp', {
             cmd = { "terraform-ls", "serve" }
         })
+        vim.lsp.enable('gopls')
         vim.lsp.config('gopls', {
             cmd = { "gopls", "serve" }
         })
