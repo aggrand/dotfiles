@@ -99,8 +99,6 @@ alias gl="git log"
 alias glo="git log --oneline"
 alias glol="git log --oneline --graph --decorate"
 
-alias rr="ranger"
-
 alias k="kubectl"
 alias kc="kubectx"
 alias kn="kubens"
@@ -126,7 +124,7 @@ eval "$(zoxide init zsh --cmd cd)"
 alias envy='~/projects/ops/env-bootstrap/envy.sh'
 
 # Yazi wrapper, can use it to "exit" in a dir
-function y() {
+function rr() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
