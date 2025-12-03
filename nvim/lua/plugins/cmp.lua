@@ -1,7 +1,8 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = {"InsertEnter", "CmdlineEnter"},
   dependencies = {
+    "ray-x/cmp-treesitter",     -- Completion source from treesitter
     "hrsh7th/cmp-nvim-lsp",     -- Completion source from LSP
     "hrsh7th/cmp-buffer",       -- Words in open buffers
     "hrsh7th/cmp-path",         -- File paths
@@ -27,12 +28,14 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-Space>"] = cmp.mapping.complete(),
+        ["<Enter>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         ['<C-e>'] = cmp.mapping.abort()
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
+        { name = "treesitter" },
         { name = "buffer" },
         { name = "path" },
       }),
@@ -40,5 +43,24 @@ return {
         ghost_text = true,
       },
     })
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' }
+          }
+        }
+      })
+    })
+    --  cmp.setup.cmdline('/', {
+    --   mapping = cmp.mapping.preset.cmdline(),
+    --   sources = {
+    --     { name = 'buffer' }
+    --   }
+    -- })
   end,
 }

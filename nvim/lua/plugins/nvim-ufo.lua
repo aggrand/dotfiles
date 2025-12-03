@@ -1,5 +1,5 @@
 -- TODO: Consider nvim origami instead?
-return {
+return {--[[
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
@@ -54,6 +54,5 @@ return {
                 end
             })
     end,
-  },
+  },]]
 }
-

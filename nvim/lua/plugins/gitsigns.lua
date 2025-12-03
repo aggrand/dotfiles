@@ -1,5 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     keys = {
         { "<leader>gb", "<cmd>Gitsigns blame<cr>", desc = "Open git blame" },
     },
