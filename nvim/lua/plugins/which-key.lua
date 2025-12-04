@@ -15,4 +15,14 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
+  config = function ()
+        local wk = require("which-key")
+        wk.add({
+            { "<leader>b", desc = "Buffer" },
+            { "<leader>f", desc = "File" },
+            { "<leader>g", desc = "Git" },
+            { "<leader>l", desc = "LSP" },
+        })
+    
+  end
 }

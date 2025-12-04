@@ -144,3 +144,5 @@ eval "$(pyenv init - zsh)"
 
 export PATH="/Users/raiden/.local/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
+
+. "$HOME/.cargo/env"
