@@ -28,19 +28,36 @@ return {
 			vim.print(vim.lsp.get_clients()[1].capabilities)
 		end, { desc = "Print LSP client capabilities" })
 
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "markdown",
-			callback = function(args)
-				vim.lsp.start({
-					name = "iwes",
-					cmd = { "iwes" },
-					root_dir = vim.fs.root(args.buf, { ".iwe" }),
-					flags = {
-						debounce_text_changes = 500,
+		-- An example nvim-lspconfig capabilities setting
+		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+		vim.lsp.enable("markdown_oxide")
+		vim.lsp.config("markdown_oxide", {
+			-- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+			-- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+			capabilities = vim.tbl_deep_extend("force", capabilities, {
+				workspace = {
+					didChangeWatchedFiles = {
+						dynamicRegistration = true,
 					},
-				})
-			end,
+				},
+			}),
+			-- on_attach = on_attach, -- configure your on attach config
 		})
+
+		-- vim.api.nvim_create_autocmd("FileType", {
+		-- 	pattern = "markdown",
+		-- 	callback = function(args)
+		-- 		vim.lsp.start({
+		-- 			name = "iwes",
+		-- 			cmd = { "iwes" },
+		-- 			root_dir = vim.fs.root(args.buf, { ".iwe" }),
+		-- 			flags = {
+		-- 				debounce_text_changes = 500,
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
 
 		-- Open diagnostic on hover
 		--[[ vim.api.nvim_create_autocmd("CursorHold", {
