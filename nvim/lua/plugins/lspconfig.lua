@@ -42,7 +42,16 @@ return {
 					},
 				},
 			}),
-			-- on_attach = on_attach, -- configure your on attach config
+			-- TODO: Doesn't work?
+			on_attach = function()
+				if vim.lsp.client.name == "markdown_oxide" then
+					vim.api.nvim_create_user_command("Daily", function(args)
+						local input = args.args
+
+						vim.lsp.buf.execute_command({ command = "jump", arguments = { input } })
+					end, { desc = "Open daily note", nargs = "*" })
+				end
+			end,
 		})
 
 		-- vim.api.nvim_create_autocmd("FileType", {

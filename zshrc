@@ -146,3 +146,6 @@ export PATH="/Users/raiden/.local/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 . "$HOME/.cargo/env"
+
+alias t="task"
+alias in="~/projects/dotfiles/bin/in.sh"
