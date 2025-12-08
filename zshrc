@@ -148,4 +148,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 . "$HOME/.cargo/env"
 
 alias t="task"
-alias in="~/projects/dotfiles/bin/in.sh"
+#alias in="~/projects/dotfiles/bin/in.sh"
+
+# Taskwarrior
+alias in="task add +in rc.context:none"

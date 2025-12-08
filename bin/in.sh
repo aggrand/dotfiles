@@ -2,10 +2,18 @@
 
 set -eou pipefail
 
-echo >> ~/notes/inbox.md
-echo >> ~/notes/inbox.md
-echo "## $(date)" >> ~/notes/inbox.md
-nvim /tmp/inbox-scratch.md
 
-cat /tmp/inbox-scratch.md >> ~/notes/inbox.md
-rm /tmp/inbox-scratch.md
+# INBOX_MD="${HOME}/notes/inbox.md"
+# SCRATCH_MD="/tmp/scratch-in.md"
+#
+# CREATION_DATE=$(date)
+#
+# echo >> ${INBOX_MD}
+# echo >> ${INBOX_MD}
+# echo "## ${CREATION_DATE}" >> ${INBOX_MD}
+# nvim ${SCRATCH_MD}
+#
+# cat ${SCRATCH_MD} >> ${INBOX_MD}
+# rm ${SCRATCH_MD}
+#
+# task add +in "Review task in ${INBOX_MD} created at ${CREATION_DATE}"
