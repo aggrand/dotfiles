@@ -32,6 +32,6 @@ context.home.write=+@home
 context.study.read=+@study
 context.study.write=+@study
 
-context=work
+context=home
 nag=
 uda.priority.values=H,M,,L
