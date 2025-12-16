@@ -8,9 +8,6 @@ SCRATCH_MD="/tmp/scratch-in.md"
 
 CREATION_DATE=$(date)
 
-echo >> ${INBOX_MD}
-echo >> ${INBOX_MD}
-echo "## ${CREATION_DATE}" >> ${INBOX_MD}
 nvim ${SCRATCH_MD}
 
 if [ ! -f ${SCRATCH_MD} ] || [ ! -s ${SCRATCH_MD} ]; then
@@ -19,5 +16,9 @@ if [ ! -f ${SCRATCH_MD} ] || [ ! -s ${SCRATCH_MD} ]; then
     exit
 fi
 
+echo >> ${INBOX_MD}
+echo >> ${INBOX_MD}
+echo "## ${CREATION_DATE}" >> ${INBOX_MD}
 cat ${SCRATCH_MD} >> ${INBOX_MD}
+
 rm ${SCRATCH_MD}
