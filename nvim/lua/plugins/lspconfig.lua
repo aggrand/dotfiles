@@ -23,6 +23,7 @@ return {
 		vim.lsp.config("gopls", {
 			cmd = { "gopls", "serve" },
 		})
+		vim.lsp.enable("gopls")
 
 		vim.keymap.set("n", "<leader>lc", function()
 			vim.print(vim.lsp.get_clients()[1].capabilities)

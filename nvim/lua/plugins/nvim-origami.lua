@@ -11,7 +11,9 @@ return {
 
 	config = function()
 		require("origami").setup({
-			useLspFoldsWithTreesitterFallback = true,
+			useLspFoldsWithTreesitterFallback = {
+				enabled = true,
+			},
 			pauseFoldsOnSearch = true,
 			foldtext = {
 				enabled = true,
